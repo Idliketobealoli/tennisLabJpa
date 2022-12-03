@@ -6,6 +6,8 @@ import mappers.TareaMapper
 import models.Adquisicion
 import models.Tarea
 import models.enums.TipoTarea
+import repositories.AdquisicionRepository
+import repositories.TareaRepository
 import java.util.UUID
 
 class AdquisicionService: BaseService<Adquisicion, UUID, AdquisicionRepository>(
@@ -27,9 +29,10 @@ class AdquisicionService: BaseService<Adquisicion, UUID, AdquisicionRepository>(
             raqueta = adquisicion.raqueta,
             precio = adquisicion.precio,
             user = adquisicion.user,
+            pedido = adquisicion.pedido,
             tipoTarea = TipoTarea.ADQUISICION
         )
-        tareaRepo.create(tarea)
+        //tareaRepo.create(tarea)
         return mapper.toDTO(this.insert(mapper.fromAdquisicionDTO(adquisicion)))
     }
 

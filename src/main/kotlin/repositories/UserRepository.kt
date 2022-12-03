@@ -61,19 +61,23 @@ class UserRepository: ICRUDRepository<User, UUID> {
     }
 
     override suspend fun create(entity: User): User = withContext(Dispatchers.IO) {
-        HibernateManager.query {
-            val alumno = manager.find(User::class.java, entity.id)
-            alumno?.let { manager.merge(entity) }
+        HibernateManager.transaction {
+            //manager.merge(entity)
+            ///*
+            val user = manager.find(User::class.java, entity.id)
+            user?.let { manager.merge(entity) }
                 .run { manager.persist(entity) }
+            //manager.flush()
+            // */
         }
         entity
     }
 
     override suspend fun delete(entity: User): Boolean = withContext(Dispatchers.IO) {
         var result = false
-        HibernateManager.query {
-            val alumno = manager.find(User::class.java, entity.id)
-            alumno?.let {
+        HibernateManager.transaction {
+            val user = manager.find(User::class.java, entity.id)
+            user?.let {
                 manager.remove(it)
                 result = true
             }

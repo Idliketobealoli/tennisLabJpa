@@ -6,6 +6,8 @@ import mappers.TareaMapper
 import models.Encordado
 import models.Tarea
 import models.enums.TipoTarea
+import repositories.EncordadoRepository
+import repositories.TareaRepository
 import java.util.UUID
 
 class EncordadoService: BaseService<Encordado, UUID, EncordadoRepository>(
@@ -27,9 +29,10 @@ class EncordadoService: BaseService<Encordado, UUID, EncordadoRepository>(
             raqueta = encordado.raqueta,
             precio = encordado.precio,
             user = encordado.user,
+            pedido = encordado.pedido,
             tipoTarea = TipoTarea.ENCORDADO
         )
-        tareaRepo.create(tarea)
+        //tareaRepo.create(tarea)
         return mapper.toDTO(this.insert(mapper.fromEncordadoDTO(encordado)))
     }
 

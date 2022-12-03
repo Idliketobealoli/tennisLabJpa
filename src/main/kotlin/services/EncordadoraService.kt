@@ -6,6 +6,8 @@ import mappers.MaquinaMapper
 import models.Encordadora
 import models.Maquina
 import models.enums.TipoMaquina
+import repositories.EncordadoraRepository
+import repositories.MaquinaRepository
 import java.util.*
 
 class EncordadoraService: BaseService<Encordadora, UUID, EncordadoraRepository>(
@@ -30,7 +32,7 @@ class EncordadoraService: BaseService<Encordadora, UUID, EncordadoraRepository>(
             numeroSerie = encordadora.numeroSerie,
             tipoMaquina = TipoMaquina.ENCORDADORA
         )
-        maquinaRepo.create(maquina)
+        //maquinaRepo.create(maquina)
         return mapper.toDTO(this.insert(mapper.fromEncordadoraDTO(encordadora)))
     }
 

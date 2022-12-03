@@ -6,6 +6,8 @@ import mappers.MaquinaMapper
 import models.Maquina
 import models.Personalizadora
 import models.enums.TipoMaquina
+import repositories.MaquinaRepository
+import repositories.PersonalizadoraRepository
 import java.util.UUID
 
 class PersonalizadoraService: BaseService<Personalizadora, UUID, PersonalizadoraRepository>(
@@ -30,7 +32,7 @@ class PersonalizadoraService: BaseService<Personalizadora, UUID, Personalizadora
             numeroSerie = personalizadora.numeroSerie,
             tipoMaquina = TipoMaquina.PERSONALIZADORA
         )
-        maquinaRepo.create(maquina)
+        //maquinaRepo.create(maquina)
         return mapper.toDTO(this.insert(mapper.fromPersonalizadoraDTO(personalizadora)))
     }
 

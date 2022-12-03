@@ -1,12 +1,10 @@
 package models
 
 import models.enums.TipoProducto
+import org.hibernate.annotations.GenericGenerator
+import org.hibernate.annotations.Type
 import java.util.*
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.NamedQuery
-import javax.persistence.Table
+import javax.persistence.*
 
 /**
  * @author Iván Azagra Troya
@@ -18,7 +16,12 @@ import javax.persistence.Table
 @NamedQuery(name = "Producto.findAll", query = "select p from Producto p")
 class Producto() {
     @Id
+    @GenericGenerator(
+        name = "UUID",
+        strategy = "org.hibernate.id.UUIDGenerator",
+    )
     @Column(name = "id")
+    @Type(type = "uuid-char")
     lateinit var id: UUID
     lateinit var tipoProducto: TipoProducto
     lateinit var marca: String

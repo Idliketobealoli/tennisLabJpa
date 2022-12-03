@@ -3,6 +3,7 @@ package models
 import com.google.gson.GsonBuilder
 import models.enums.PedidoEstado
 import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.GenericGenerator
 import org.hibernate.annotations.Type
 import java.time.LocalDate
 import java.util.*
@@ -13,15 +14,20 @@ import javax.persistence.*
 @NamedQuery(name = "Pedido.findAll", query = "select p from Pedido p")
 class Pedido() {
     @Id
+    @GenericGenerator(
+        name = "UUID",
+        strategy = "org.hibernate.id.UUIDGenerator",
+    )
     @Column(name = "id")
+    @Type(type = "uuid-char")
     lateinit var id: UUID
-    @OneToMany(mappedBy = "pedido", orphanRemoval = true, fetch = FetchType.LAZY)
-    lateinit var tareas: List<Tarea>
-    @ManyToOne
+    //@OneToMany(mappedBy = "pedido", orphanRemoval = true, fetch = FetchType.LAZY)
+    //lateinit var tareas: List<Tarea>
+    @ManyToOne//(cascade = [CascadeType.DETACH])
     @JoinColumn(name = "client_id", referencedColumnName = "id", nullable = false)
     lateinit var client: User
-    @OneToMany(mappedBy = "pedido", orphanRemoval = true, fetch = FetchType.LAZY)
-    lateinit var turnos: List<Turno>
+    //@OneToMany(mappedBy = "pedido", orphanRemoval = true, fetch = FetchType.LAZY)
+    //lateinit var turnos: List<Turno>
     lateinit var state: PedidoEstado
 
     @Column(name = "fecha_entrada")
@@ -44,24 +50,25 @@ class Pedido() {
 
     constructor(
         id: UUID?,
-        tareas: List<Tarea>, // todo SizedIterable
+        //tareas: List<Tarea>,
         client: User,
-        turnos: List<Turno>, // todo SizedIterable
+        //turnos: List<Turno>,
         state: PedidoEstado,
         fechaEntrada: LocalDate?,
         fechaProgramada: LocalDate,
         fechaSalida: LocalDate,
-        fechaEntrega: LocalDate?
+        fechaEntrega: LocalDate?,
+        precio: Double
     ): this() {
         this.id = id ?: UUID.randomUUID()
-        this.tareas = tareas
+        //this.tareas = tareas
         this.client = client
-        this.turnos = turnos
+        //this.turnos = turnos
         this.state = state
         this.fechaEntrada = fechaEntrada ?: LocalDate.now()
         this.fechaProgramada = fechaProgramada
         this.fechaSalida = fechaSalida
         this.fechaEntrega = fechaEntrega ?: fechaSalida
-        this.precio = tareas.sumOf { it.precio }
+        this.precio = precio
     }
 }

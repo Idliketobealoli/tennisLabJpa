@@ -3,6 +3,7 @@ package services
 import dto.ProductoDTO
 import mappers.ProductoMapper
 import models.Producto
+import repositories.ProductoRepository
 import java.util.*
 
 class ProductoService: BaseService<Producto, UUID, ProductoRepository>(

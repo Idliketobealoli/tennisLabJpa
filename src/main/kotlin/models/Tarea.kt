@@ -1,9 +1,8 @@
 package models
 
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.annotations.Expose
 import models.enums.TipoTarea
+import org.hibernate.annotations.GenericGenerator
+import org.hibernate.annotations.Type
 import java.util.*
 import javax.persistence.*
 
@@ -14,24 +13,30 @@ import javax.persistence.*
  */
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "tareas")
 @NamedQuery(name = "Tarea.findAll", query = "select t from Tarea t")
-open class Tarea(){
+class Tarea(){
     @Id
+    @GenericGenerator(
+        name = "UUID",
+        strategy = "org.hibernate.id.UUIDGenerator",
+    )
     @Column(name = "id")
-    open lateinit var id: UUID
+    @Type(type = "uuid-char")
+    lateinit var id: UUID
 
-    @ManyToOne
+    @ManyToOne//(cascade = [CascadeType.DETACH])
     @JoinColumn(name = "producto_id", referencedColumnName = "id", nullable = false)
     lateinit var raqueta: Producto
-    open var precio: Double = 0.0
+    var precio: Double = 0.0
 
-    @ManyToOne
+    @ManyToOne//(cascade = [CascadeType.DETACH])
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     lateinit var user: User
     lateinit var tipoTarea: TipoTarea
 
-    @ManyToOne
+    @ManyToOne//(cascade = [CascadeType.DETACH])
     @JoinColumn(name = "pedido_id", referencedColumnName = "id", nullable = false)
     lateinit var pedido: Pedido
 
@@ -40,12 +45,14 @@ open class Tarea(){
         raqueta: Producto,
         precio: Double?,
         user: User,
+        pedido: Pedido,
         tipoTarea: TipoTarea
     ) : this () {
         this.id = id ?: UUID.randomUUID()
         this.raqueta = raqueta
         this.precio = precio ?: 0.0
         this.user = user
+        this.pedido = pedido
         this.tipoTarea = tipoTarea
     }
 }

@@ -3,6 +3,7 @@ package services
 import dto.TurnoDTO
 import mappers.TurnoMapper
 import models.Turno
+import repositories.TurnoRepository
 import java.util.UUID
 
 class TurnoService: BaseService<Turno, UUID, TurnoRepository>(

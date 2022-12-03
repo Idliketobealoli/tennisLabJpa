@@ -2,16 +2,13 @@ package menu
 
 import controllers.UserController
 import dto.UserDTO
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.*
 import models.enums.Profile
-import org.jetbrains.exposed.sql.transactions.experimental.suspendedTransactionAsync
 import util.betweenXandY
 import util.waitingText
 import java.util.*
 
-suspend fun menuUsers() {
+suspend fun menuUsers() = coroutineScope {
     var back = false
     while (!back) {
         println(" - Please select one of the following actions.")
@@ -32,7 +29,7 @@ suspend fun menuUsers() {
         }
         when (res.toInt()) {
             1 -> {
-                val users = suspendedTransactionAsync(Dispatchers.IO) { UserController.findAllUsers() }
+                val users = async(Dispatchers.IO) { UserController.findAllUsers() }
                 waitingText(users)
                 println(users.await())
             }
@@ -48,10 +45,10 @@ suspend fun menuUsers() {
     }
 }
 
-private suspend fun delete() {
+private suspend fun delete() = coroutineScope {
     println(" - Email of target user:")
     val email = readln()
-    val bu = suspendedTransactionAsync(Dispatchers.IO) { UserController.getUserByEmailForLogin(email) }
+    val bu = async(Dispatchers.IO) { UserController.getUserByEmailForLogin(email) }
     waitingText(bu)
     val baseUser = bu.await()
     if (baseUser == null) println("There are no users with email: $email")
@@ -62,7 +59,7 @@ private suspend fun delete() {
         while (!input.contentEquals("y") && !input.contentEquals("n"))
             input = readln()
         if (input.contentEquals("y")) {
-            val deleted = suspendedTransactionAsync(Dispatchers.IO) { UserController.deleteUser(baseUser) }
+            val deleted = async(Dispatchers.IO) { UserController.deleteUser(baseUser) }
             println("Deleting user...")
             waitingText(deleted)
             println(deleted.await())
@@ -70,10 +67,10 @@ private suspend fun delete() {
     }
 }
 
-private suspend fun update() {
+private suspend fun update() = coroutineScope {
     println(" - Current email of target user:")
     val email = readln()
-    val bu = suspendedTransactionAsync(Dispatchers.IO) { UserController.getUserByEmailForLogin(email) }
+    val bu = async(Dispatchers.IO) { UserController.getUserByEmailForLogin(email) }
     waitingText(bu)
     val baseUser = bu.await()
     if (baseUser == null) println("There are no users with email: $email")
@@ -111,13 +108,13 @@ private suspend fun update() {
             password = pwd,
             perfil = profile
         )
-        val updated = suspendedTransactionAsync(Dispatchers.IO) { UserController.insertUser(newUser) }
+        val updated = async(Dispatchers.IO) { UserController.insertUser(newUser) }
         waitingText(updated)
         println(updated.await())
     }
 }
 
-private suspend fun create() {
+private suspend fun create() = coroutineScope {
     var goBack = false
     while (!goBack) {
         println(" - Name: ")
@@ -126,10 +123,10 @@ private suspend fun create() {
         val famName = readln()
         println(" - Phone number: ")
         val number = readln()
-        val u2 = suspendedTransactionAsync(Dispatchers.IO) { UserController.getUserByPhoneForLogin(number) }
+        val u2 = async(Dispatchers.IO) { UserController.getUserByPhoneForLogin(number) }
         println(" - Email: ")
         val mail = readln()
-        val u1 = suspendedTransactionAsync(Dispatchers.IO) { UserController.getUserByEmailForLogin(mail) }
+        val u1 = async(Dispatchers.IO) { UserController.getUserByEmailForLogin(mail) }
         println(" - Password: ")
         val pwd = readln()
         lateinit var profile: Profile
@@ -156,7 +153,7 @@ private suspend fun create() {
                 password = pwd,
                 perfil = profile
             )
-            val result = suspendedTransactionAsync(Dispatchers.IO) { UserController.insertUser(newUser) }
+            val result = async(Dispatchers.IO) { UserController.insertUser(newUser) }
             waitingText(result)
             println(result.await())
             goBack = true
@@ -170,23 +167,23 @@ private suspend fun create() {
     }
 }
 
-private suspend fun findPhone() {
+private suspend fun findPhone() = coroutineScope {
     println(" - Input phone:")
     val input = readln()
-    val result = suspendedTransactionAsync(Dispatchers.IO) { UserController.getUserByPhone(input) }
+    val result = async(Dispatchers.IO) { UserController.getUserByPhone(input) }
     waitingText(result)
     println(result.await())
 }
 
-private suspend fun findEmail() {
+private suspend fun findEmail() = coroutineScope {
     println(" - Input email:")
     val input = readln()
-    val result = suspendedTransactionAsync(Dispatchers.IO) { UserController.getUserByEmail(input) }
+    val result = async(Dispatchers.IO) { UserController.getUserByEmail(input) }
     waitingText(result)
     println(result.await())
 }
 
-private suspend fun findId() {
+private suspend fun findId() = coroutineScope {
     println(" - Input id:")
     var id: UUID? = null
     var correctFormat = false
@@ -195,12 +192,12 @@ private suspend fun findId() {
         id = UUID.fromString(input) ?: null
         if (id != null) correctFormat = true
     }
-    val result = suspendedTransactionAsync(Dispatchers.IO) { UserController.getUserById(id!!) }
+    val result = async(Dispatchers.IO) { UserController.getUserById(id!!) }
     waitingText(result)
     println(result.await())
 }
 
-private suspend fun findAllByRole() {
+private suspend fun findAllByRole() = coroutineScope {
     var input = ""
     println(" - Select a role: [admin/worker/client]")
     while (!input.contentEquals("admin") &&
@@ -209,9 +206,9 @@ private suspend fun findAllByRole() {
         input = readln()
     lateinit var result: Deferred<String>
     when (input) {
-        "admin" -> result = suspendedTransactionAsync(Dispatchers.IO) { UserController.findAllUsersWithRole(Profile.ADMIN) }
-        "worker" -> result = suspendedTransactionAsync(Dispatchers.IO) { UserController.findAllUsersWithRole(Profile.WORKER) }
-        "client" -> result = suspendedTransactionAsync(Dispatchers.IO) { UserController.findAllUsersWithRole(Profile.CLIENT) }
+        "admin" -> result = async(Dispatchers.IO) { UserController.findAllUsersWithRole(Profile.ADMIN) }
+        "worker" -> result = async(Dispatchers.IO) { UserController.findAllUsersWithRole(Profile.WORKER) }
+        "client" -> result = async(Dispatchers.IO) { UserController.findAllUsersWithRole(Profile.CLIENT) }
     }
     waitingText(result)
     println(result.await())

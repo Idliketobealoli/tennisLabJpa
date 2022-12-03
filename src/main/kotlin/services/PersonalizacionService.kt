@@ -6,6 +6,8 @@ import mappers.TareaMapper
 import models.Personalizacion
 import models.Tarea
 import models.enums.TipoTarea
+import repositories.PersonalizacionRepository
+import repositories.TareaRepository
 import java.util.UUID
 
 class PersonalizacionService: BaseService<Personalizacion, UUID, PersonalizacionRepository>(
@@ -27,9 +29,10 @@ class PersonalizacionService: BaseService<Personalizacion, UUID, Personalizacion
             raqueta = personalizacion.raqueta,
             precio = personalizacion.precio,
             user = personalizacion.user,
+            pedido = personalizacion.pedido,
             tipoTarea = TipoTarea.PERSONALIZACION
         )
-        tareaRepo.create(tarea)
+        //tareaRepo.create(tarea)
         return mapper.toDTO(this.insert(mapper.fromPersonalizacionDTO(personalizacion)))
     }
 

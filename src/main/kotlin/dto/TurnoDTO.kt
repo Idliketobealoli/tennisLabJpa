@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.annotations.Expose
 import models.Maquina
+import models.Pedido
 import models.Tarea
 import models.User
 import java.time.LocalDateTime
@@ -20,6 +21,7 @@ class TurnoDTO() {
     @Expose var numPedidosActivos: Int = 1
     @Expose lateinit var tarea1: Tarea
     @Expose var tarea2: Tarea? = null
+    @Expose lateinit var pedido: Pedido
 
     constructor(
         id: UUID?,
@@ -28,7 +30,8 @@ class TurnoDTO() {
         horaInicio: LocalDateTime,
         horaFin: LocalDateTime?,
         tarea1: Tarea,
-        tarea2: Tarea?
+        tarea2: Tarea?,
+        pedido: Pedido
     ) : this() {
         this.id = id ?: UUID.randomUUID()
         this.worker = worker
@@ -39,6 +42,7 @@ class TurnoDTO() {
         this.tarea2 = tarea2
         this.horaInicioString = horaInicio.toString()
         this.horaFinString = horaFin.toString()
+        this.pedido = pedido
 
         if (this.tarea2 != null) {
             numPedidosActivos++

@@ -3,6 +3,7 @@ package dto
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.annotations.Expose
+import models.Pedido
 import models.Producto
 import models.User
 import java.util.*
@@ -11,6 +12,7 @@ class AdquisicionDTO(): TareaDTO {
     @Expose lateinit var id: UUID
     @Expose lateinit var raqueta: Producto
     @Expose lateinit var user: User
+    @Expose lateinit var pedido: Pedido
     @Expose lateinit var productoAdquirido: Producto
     @Expose var precio: Double = 0.0
 
@@ -18,11 +20,13 @@ class AdquisicionDTO(): TareaDTO {
         id: UUID?,
         raqueta: Producto,
         user: User,
+        pedido: Pedido,
         productoAdquirido: Producto
     ) : this() {
         this.id = id ?: UUID.randomUUID()
         this.raqueta = raqueta
         this.user = user
+        this.pedido = pedido
         this.productoAdquirido = productoAdquirido
         this.precio = productoAdquirido.precio
     }

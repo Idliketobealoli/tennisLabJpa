@@ -1,21 +1,7 @@
 package mappers
 
 import dto.TurnoDTO
-import entities.*
 import models.Turno
-import org.jetbrains.exposed.dao.UUIDEntityClass
-
-suspend fun TurnoDao.fromTurnoDaoToTurno(): Turno {
-    return Turno(
-        id = id.value,
-        worker = worker.fromUserDaoToUser(),
-        maquina = maquina.fromMaquinaDaoToMaquina(),
-        horaInicio = horaInicio,
-        horaFin = horaFin,
-        tarea1 = tarea1.fromTareaDaoToTarea(),
-        tarea2 = tarea2?.fromTareaDaoToTarea()
-    )
-}
 
 class TurnoMapper: BaseMapper<Turno, TurnoDTO>() {
     override fun fromDTO(item: TurnoDTO): Turno {
@@ -26,7 +12,8 @@ class TurnoMapper: BaseMapper<Turno, TurnoDTO>() {
             horaInicio = item.horaInicio,
             horaFin = item.horaFin,
             tarea1 = item.tarea1,
-            tarea2 = item.tarea2
+            tarea2 = item.tarea2,
+            pedido = item.pedido
         )
     }
 
@@ -38,7 +25,8 @@ class TurnoMapper: BaseMapper<Turno, TurnoDTO>() {
             horaInicio = item.horaInicio,
             horaFin = item.horaFin,
             tarea1 = item.tarea1,
-            tarea2 = item.tarea2
+            tarea2 = item.tarea2,
+            pedido = item.pedido
         )
     }
 }

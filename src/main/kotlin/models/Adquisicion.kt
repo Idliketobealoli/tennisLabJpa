@@ -9,11 +9,7 @@ import javax.persistence.*
 @Table(name = "adquisiciones")
 @NamedQuery(name = "Adquisicion.findAll", query = "select a from Adquisicion a")
 class Adquisicion(): Tarea() {
-    @Id
-    @Column(name = "id")
-    override var id = super.id
-
-    @ManyToOne
+    @ManyToOne//(cascade = [CascadeType.DETACH])
     @JoinColumn(name = "p_adquirido_id", referencedColumnName = "id", nullable = false)
     @Expose
     lateinit var productoAdquirido: Producto
@@ -22,23 +18,14 @@ class Adquisicion(): Tarea() {
         id: UUID?,
         raqueta: Producto,
         user: User,
+        pedido: Pedido,
         productoAdquirido: Producto,
         precio: Double
     ) : this() {
         this.id = id ?: UUID.randomUUID()
         this.raqueta = raqueta
         this.user = user
-        this.productoAdquirido = productoAdquirido
-        this.precio = precio
-        this.tipoTarea = TipoTarea.ADQUISICION
-    }
-
-    constructor(
-        id: UUID?,
-        productoAdquirido: Producto,
-        precio: Double
-    ) : this() {
-        this.id = id ?: UUID.randomUUID()
+        this.pedido = pedido
         this.productoAdquirido = productoAdquirido
         this.precio = precio
         this.tipoTarea = TipoTarea.ADQUISICION

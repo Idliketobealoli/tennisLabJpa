@@ -7,16 +7,15 @@ import dto.EncordadoraDTO
 import dto.PersonalizadoraDTO
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withTimeout
-import kotlinx.coroutines.withTimeoutOrNull
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import models.enums.Profile
-import org.jetbrains.exposed.sql.transactions.experimental.suspendedTransactionAsync
 import util.betweenXandY
 import util.waitingText
 import java.time.LocalDate
 import java.util.*
 
-suspend fun menuMaquinas(profile: Profile) {
+suspend fun menuMaquinas(profile: Profile) = coroutineScope {
     var back = false
     while (!back) {
         println(" - Please select one of the following actions.")
@@ -39,17 +38,17 @@ suspend fun menuMaquinas(profile: Profile) {
                 }
                 when (res.toInt()) {
                     1 -> {
-                        val maquinas = suspendedTransactionAsync(Dispatchers.IO) { MaquinaController.findAllMaquinas() }
+                        val maquinas = async(Dispatchers.IO) { MaquinaController.findAllMaquinas() }
                         waitingText(maquinas)
                         println(maquinas.await())
                     }
                     2 -> {
-                        val maquinas = suspendedTransactionAsync(Dispatchers.IO) { EncordadoraController.findAllEncordadoras() }
+                        val maquinas = async(Dispatchers.IO) { EncordadoraController.findAllEncordadoras() }
                         waitingText(maquinas)
                         println(maquinas.await())
                     }
                     3 -> {
-                        val maquinas = suspendedTransactionAsync(Dispatchers.IO) { PersonalizadoraController.findAllPersonalizadoras() }
+                        val maquinas = async(Dispatchers.IO) { PersonalizadoraController.findAllPersonalizadoras() }
                         waitingText(maquinas)
                         println(maquinas.await())
                     }
@@ -76,17 +75,17 @@ suspend fun menuMaquinas(profile: Profile) {
                 }
                 when (res.toInt()) {
                     1 -> {
-                        val maquinas = suspendedTransactionAsync(Dispatchers.IO) { MaquinaController.findAllMaquinas() }
+                        val maquinas = async(Dispatchers.IO) { MaquinaController.findAllMaquinas() }
                         waitingText(maquinas)
                         println(maquinas.await())
                     }
                     2 -> {
-                        val maquinas = suspendedTransactionAsync(Dispatchers.IO) { EncordadoraController.findAllEncordadoras() }
+                        val maquinas = async(Dispatchers.IO) { EncordadoraController.findAllEncordadoras() }
                         waitingText(maquinas)
                         println(maquinas.await())
                     }
                     3 -> {
-                        val maquinas = suspendedTransactionAsync(Dispatchers.IO) { PersonalizadoraController.findAllPersonalizadoras() }
+                        val maquinas = async(Dispatchers.IO) { PersonalizadoraController.findAllPersonalizadoras() }
                         waitingText(maquinas)
                         println(maquinas.await())
                     }
@@ -100,10 +99,10 @@ suspend fun menuMaquinas(profile: Profile) {
     }
 }
 
-private suspend fun delete() {
+private suspend fun delete() = coroutineScope {
     println(" - Serial number of target maquina: ")
     val sNum = readln()
-    val bm = suspendedTransactionAsync(Dispatchers.IO) { MaquinaController.getMaquinaBySerialNumberForCreation(sNum) }
+    val bm = async(Dispatchers.IO) { MaquinaController.getMaquinaBySerialNumberForCreation(sNum) }
     waitingText(bm)
     val baseMaquina = bm.await()
     if (baseMaquina == null) println("There are no maquinas with serial number: $sNum")
@@ -114,7 +113,7 @@ private suspend fun delete() {
         while (!input.contentEquals("y") && !input.contentEquals("n"))
             input = readln()
         if (input.contentEquals("y")) {
-            val result = suspendedTransactionAsync(Dispatchers.IO) { MaquinaController.deleteMaquina(baseMaquina) }
+            val result = async(Dispatchers.IO) { MaquinaController.deleteMaquina(baseMaquina) }
             println("Deleting maquina...")
             waitingText(result)
             println(result)
@@ -122,10 +121,10 @@ private suspend fun delete() {
     }
 }
 
-private suspend fun update() {
+private suspend fun update() = coroutineScope {
     println(" - Serial number of target maquina: ")
     val sNum = readln()
-    val bm = suspendedTransactionAsync(Dispatchers.IO) { MaquinaController.getMaquinaBySerialNumberForCreation(sNum) }
+    val bm = async(Dispatchers.IO) { MaquinaController.getMaquinaBySerialNumberForCreation(sNum) }
     waitingText(bm)
     val baseMaquina = bm.await()
     if (baseMaquina == null) println("There are no maquinas with serial number: $sNum")
@@ -168,7 +167,7 @@ private suspend fun update() {
                     maxTension = tensionMax,
                     minTension = tensionMin
                 )
-                val result = suspendedTransactionAsync(Dispatchers.IO) { MaquinaController.insertMaquina(newMaquina) }
+                val result = async(Dispatchers.IO) { MaquinaController.insertMaquina(newMaquina) }
                 waitingText(result)
                 println(result.await())
             }
@@ -213,7 +212,7 @@ private suspend fun update() {
                     measuresBalance = mBalance,
                     measuresRigidity = mRigidity
                 )
-                val result = suspendedTransactionAsync(Dispatchers.IO) { MaquinaController.insertMaquina(newMaquina) }
+                val result = async(Dispatchers.IO) { MaquinaController.insertMaquina(newMaquina) }
                 waitingText(result)
                 println(result.await())
             }
@@ -221,7 +220,7 @@ private suspend fun update() {
     }
 }
 
-private suspend fun create() {
+private suspend fun create() = coroutineScope {
     var goBack = false
     while (!goBack) {
         println(" - Modelo: ")
@@ -230,7 +229,7 @@ private suspend fun create() {
         val marca = readln()
         println(" - Numero de serie: ")
         val numSerie = readln()
-        val maquinaConNumSerie = suspendedTransactionAsync(Dispatchers.IO) { MaquinaController.getMaquinaBySerialNumberForCreation(numSerie) }
+        val maquinaConNumSerie = async(Dispatchers.IO) { MaquinaController.getMaquinaBySerialNumberForCreation(numSerie) }
         var input = ""
         println(" - Encordadora o Personalizadora? [e/p]")
         while (!input.contentEquals("e") &&
@@ -263,7 +262,7 @@ private suspend fun create() {
                         maxTension = tensionMax,
                         minTension = tensionMin
                     )
-                    val result = suspendedTransactionAsync(Dispatchers.IO) { MaquinaController.insertMaquina(newMaquina) }
+                    val result = async(Dispatchers.IO) { MaquinaController.insertMaquina(newMaquina) }
                     waitingText(result)
                     println(result.await())
                     goBack = true
@@ -317,7 +316,7 @@ private suspend fun create() {
                         measuresBalance = mBalance,
                         measuresRigidity = mRigidity
                     )
-                    val result = suspendedTransactionAsync(Dispatchers.IO) { MaquinaController.insertMaquina(newMaquina) }
+                    val result = async(Dispatchers.IO) { MaquinaController.insertMaquina(newMaquina) }
                     waitingText(result)
                     println(result.await())
                     goBack = true
@@ -333,7 +332,7 @@ private suspend fun create() {
     }
 }
 
-suspend fun findAllFromCondition() {
+suspend fun findAllFromCondition() = coroutineScope {
     var input = ""
     println("""
         .-----------  Select a field to search by: {comand}_[arguments]  -----------.
@@ -359,7 +358,7 @@ suspend fun findAllFromCondition() {
                         args[1].contentEquals("<"))) {
                 val fecha = LocalDate.parse(args[2]) ?: null
                 if (fecha != null) {
-                    val result = suspendedTransactionAsync(Dispatchers.IO) { MaquinaController.findAllMaquinasByAcquisitionDate(fecha, args[1]) }
+                    val result = async(Dispatchers.IO) { MaquinaController.findAllMaquinasByAcquisitionDate(fecha, args[1]) }
                     waitingText(result)
                     println(result.await())
                 }
@@ -373,8 +372,8 @@ suspend fun findAllFromCondition() {
                         args[1].contentEquals("n"))) {
                 lateinit var result: Deferred<String>
                 when (args[1]) {
-                    "y" -> result = suspendedTransactionAsync(Dispatchers.IO) { EncordadoraController.findAllManuales(true) }
-                    "n" -> result = suspendedTransactionAsync(Dispatchers.IO) { EncordadoraController.findAllManuales(false) }
+                    "y" -> result = async(Dispatchers.IO) { EncordadoraController.findAllManuales(true) }
+                    "n" -> result = async(Dispatchers.IO) { EncordadoraController.findAllManuales(false) }
                 }
                 waitingText(result)
                 println(result.await())
@@ -387,8 +386,8 @@ suspend fun findAllFromCondition() {
                         args[1].contentEquals("n"))) {
                 lateinit var result: Deferred<String>
                 when (args[1]) {
-                    "y" -> result = suspendedTransactionAsync(Dispatchers.IO) { PersonalizadoraController.findAllManeuverability(true) }
-                    "n" -> result = suspendedTransactionAsync(Dispatchers.IO) { PersonalizadoraController.findAllManeuverability(false) }
+                    "y" -> result = async(Dispatchers.IO) { PersonalizadoraController.findAllManeuverability(true) }
+                    "n" -> result = async(Dispatchers.IO) { PersonalizadoraController.findAllManeuverability(false) }
                 }
                 waitingText(result)
                 println(result.await())
@@ -401,8 +400,8 @@ suspend fun findAllFromCondition() {
                         args[1].contentEquals("n"))) {
                 lateinit var result: Deferred<String>
                 when (args[1]) {
-                    "y" -> result = suspendedTransactionAsync(Dispatchers.IO) { PersonalizadoraController.findAllBalance(true) }
-                    "n" -> result = suspendedTransactionAsync(Dispatchers.IO) { PersonalizadoraController.findAllBalance(false) }
+                    "y" -> result = async(Dispatchers.IO) { PersonalizadoraController.findAllBalance(true) }
+                    "n" -> result = async(Dispatchers.IO) { PersonalizadoraController.findAllBalance(false) }
                 }
                 waitingText(result)
                 println(result.await())
@@ -415,8 +414,8 @@ suspend fun findAllFromCondition() {
                         args[1].contentEquals("n"))) {
                 lateinit var result: Deferred<String>
                 when (args[1]) {
-                    "y" -> result = suspendedTransactionAsync(Dispatchers.IO) { PersonalizadoraController.findAllRigidity(true) }
-                    "n" -> result = suspendedTransactionAsync(Dispatchers.IO) { PersonalizadoraController.findAllRigidity(false) }
+                    "y" -> result = async(Dispatchers.IO) { PersonalizadoraController.findAllRigidity(true) }
+                    "n" -> result = async(Dispatchers.IO) { PersonalizadoraController.findAllRigidity(false) }
                 }
                 waitingText(result)
                 println(result.await())
@@ -426,7 +425,7 @@ suspend fun findAllFromCondition() {
     }
 }
 
-suspend fun findBySomething() {
+suspend fun findBySomething() = coroutineScope {
     var input = ""
     println(" - Select a field to search by: " +
             "[id/model/brand/serial number]")
@@ -437,10 +436,10 @@ suspend fun findBySomething() {
         input = readln()
     lateinit var result: Deferred<String>
     when (input) {
-        "id" -> result = suspendedTransactionAsync(Dispatchers.IO) { MaquinaController.getMaquinaById(UUID.fromString(input)) }
-        "model" -> result = suspendedTransactionAsync(Dispatchers.IO) { MaquinaController.getMaquinaByModel(input) }
-        "brand" -> result = suspendedTransactionAsync(Dispatchers.IO) { MaquinaController.getMaquinaByBrand(input) }
-        "serial number" -> result = suspendedTransactionAsync(Dispatchers.IO) { MaquinaController.getMaquinaBySerialNumber(input) }
+        "id" -> result = async(Dispatchers.IO) { MaquinaController.getMaquinaById(UUID.fromString(input)) }
+        "model" -> result = async(Dispatchers.IO) { MaquinaController.getMaquinaByModel(input) }
+        "brand" -> result = async(Dispatchers.IO) { MaquinaController.getMaquinaByBrand(input) }
+        "serial number" -> result = async(Dispatchers.IO) { MaquinaController.getMaquinaBySerialNumber(input) }
     }
     waitingText(result)
     println(result.await())

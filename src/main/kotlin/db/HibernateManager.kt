@@ -10,8 +10,8 @@ import javax.persistence.Persistence
 val logger = KotlinLogging.logger {  }
 object HibernateManager: Closeable {
     private var entityManagerFactory = Persistence.createEntityManagerFactory("default")
-    lateinit var manager: EntityManager
-    private lateinit var transaction: EntityTransaction
+    var manager: EntityManager
+    var transaction: EntityTransaction
 
     init {
         manager = entityManagerFactory.createEntityManager()

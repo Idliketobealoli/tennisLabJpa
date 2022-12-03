@@ -88,7 +88,7 @@ fun main(args: Array<String>) {
         while (!loginEnter.contentEquals("login") && ! loginEnter.contentEquals("register")) {
             loginEnter = readln()
         }
-        val user = if (loginEnter.contentEquals("login")) async { login() } else async { register() }
+        val user = if (loginEnter.contentEquals("login")) async(Dispatchers.Default) { login() } else async(Dispatchers.Default) { register() }
 
         launch { menu(user.await()) }
     }
