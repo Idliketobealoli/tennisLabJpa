@@ -6,11 +6,6 @@ import org.hibernate.annotations.Type
 import java.util.*
 import javax.persistence.*
 
-/**
- * @author Iván Azagra Troya
- * Clase POKO de la entidad producto
- */
-
 @Entity
 @Table(name = "productos")
 @NamedQuery(name = "Producto.findAll", query = "select p from Producto p")

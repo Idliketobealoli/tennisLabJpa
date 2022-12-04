@@ -27,13 +27,7 @@ class AdquisicionRepository: ICRUDRepository<Adquisicion, UUID> {
 
     override suspend fun create(entity: Adquisicion): Adquisicion = withContext(Dispatchers.IO) {
         HibernateManager.transaction {
-            //HibernateManager.manager.merge(entity)
-            ///*
-            val adquisicion = HibernateManager.manager.find(Adquisicion::class.java, entity.id)
-            adquisicion?.let { HibernateManager.manager.merge(entity) }
-                .run { HibernateManager.manager.persist(entity) }
-            // */
-            //HibernateManager.manager.flush()
+            HibernateManager.manager.merge(entity)
         }
         entity
     }

@@ -3,16 +3,12 @@ package services
 import dto.MaquinaDTO
 import dto.PersonalizadoraDTO
 import mappers.MaquinaMapper
-import models.Maquina
 import models.Personalizadora
-import models.enums.TipoMaquina
-import repositories.MaquinaRepository
 import repositories.PersonalizadoraRepository
 import java.util.UUID
 
-class PersonalizadoraService: BaseService<Personalizadora, UUID, PersonalizadoraRepository>(
+open class PersonalizadoraService: BaseService<Personalizadora, UUID, PersonalizadoraRepository>(
     PersonalizadoraRepository()) {
-    val maquinaRepo = MaquinaRepository()
     val mapper = MaquinaMapper()
 
     suspend fun getAllPersonalizadoras(): List<PersonalizadoraDTO> {
@@ -24,15 +20,6 @@ class PersonalizadoraService: BaseService<Personalizadora, UUID, Personalizadora
     }
 
     suspend fun createPersonalizadora(personalizadora: PersonalizadoraDTO): MaquinaDTO {
-        val maquina = Maquina(
-            id = personalizadora.id,
-            modelo = personalizadora.modelo,
-            marca = personalizadora.marca,
-            fechaAdquisicion = personalizadora.fechaAdquisicion,
-            numeroSerie = personalizadora.numeroSerie,
-            tipoMaquina = TipoMaquina.PERSONALIZADORA
-        )
-        //maquinaRepo.create(maquina)
         return mapper.toDTO(this.insert(mapper.fromPersonalizadoraDTO(personalizadora)))
     }
 

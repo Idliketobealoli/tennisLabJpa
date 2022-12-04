@@ -28,13 +28,7 @@ class MaquinaRepository: ICRUDRepository<Maquina, UUID> {
 
     override suspend fun create(entity: Maquina): Maquina = withContext(Dispatchers.IO) {
         HibernateManager.transaction {
-            //manager.merge(entity)
-            ///*
-            val maquina = manager.find(Maquina::class.java, entity.id)
-            maquina?.let { manager.merge(entity) }
-                .run { manager.persist(entity) }
-            // */
-            //manager.flush()
+            manager.merge(entity)
         }
         entity
     }

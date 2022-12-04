@@ -27,13 +27,7 @@ class TurnoRepository: ICRUDRepository<Turno, UUID> {
 
     override suspend fun create(entity: Turno): Turno = withContext(Dispatchers.IO) {
         HibernateManager.transaction {
-            //HibernateManager.manager.merge(entity)
-            ///*
-            val turno = HibernateManager.manager.find(Turno::class.java, entity.id)
-            turno?.let { HibernateManager.manager.merge(entity) }
-                .run { HibernateManager.manager.persist(entity) }
-            // */
-            //HibernateManager.manager.flush()
+            HibernateManager.manager.merge(entity)
         }
         entity
     }

@@ -27,10 +27,7 @@ class ProductoRepository: ICRUDRepository<Producto, UUID> {
 
     override suspend fun create(entity: Producto): Producto = withContext(Dispatchers.IO) {
         HibernateManager.transaction {
-            val producto = HibernateManager.manager.find(Producto::class.java, entity.id)
-            producto?.let { HibernateManager.manager.merge(entity) }
-                .run { HibernateManager.manager.persist(entity) }
-            //HibernateManager.manager.flush()
+            HibernateManager.manager.merge(entity)
         }
         entity
     }

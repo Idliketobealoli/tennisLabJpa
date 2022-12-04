@@ -6,12 +6,6 @@ import org.hibernate.annotations.Type
 import java.util.*
 import javax.persistence.*
 
-/**
- * @author Iván Azagra Troya
- * Clase abstracta de la entidad tarea con un identificador
- * y el producto que se pasará
- */
-
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "tareas")
@@ -26,17 +20,17 @@ class Tarea(){
     @Type(type = "uuid-char")
     lateinit var id: UUID
 
-    @ManyToOne//(cascade = [CascadeType.DETACH])
+    @ManyToOne
     @JoinColumn(name = "producto_id", referencedColumnName = "id", nullable = false)
     lateinit var raqueta: Producto
     var precio: Double = 0.0
 
-    @ManyToOne//(cascade = [CascadeType.DETACH])
+    @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     lateinit var user: User
     lateinit var tipoTarea: TipoTarea
 
-    @ManyToOne//(cascade = [CascadeType.DETACH])
+    @ManyToOne
     @JoinColumn(name = "pedido_id", referencedColumnName = "id", nullable = false)
     lateinit var pedido: Pedido
 

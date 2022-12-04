@@ -1,7 +1,5 @@
 package services
 
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.flow.Flow
 import repositories.ICRUDRepository
 
 abstract class BaseService<T, ID, R : ICRUDRepository<T, ID>>(rep: R) {

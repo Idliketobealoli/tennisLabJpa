@@ -6,7 +6,6 @@ import com.google.gson.annotations.Expose
 import models.Pedido
 import models.Producto
 import models.User
-import util.toLocalMoney
 import java.util.*
 
 class EncordadoDTO(): TareaDTO {

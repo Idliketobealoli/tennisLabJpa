@@ -4,15 +4,11 @@ import dto.EncordadoDTO
 import dto.TareaDTO
 import mappers.TareaMapper
 import models.Encordado
-import models.Tarea
-import models.enums.TipoTarea
 import repositories.EncordadoRepository
-import repositories.TareaRepository
 import java.util.UUID
 
-class EncordadoService: BaseService<Encordado, UUID, EncordadoRepository>(
+open class EncordadoService: BaseService<Encordado, UUID, EncordadoRepository>(
     EncordadoRepository()) {
-    val tareaRepo = TareaRepository()
     val mapper = TareaMapper()
 
     suspend fun getAllEncordados(): List<EncordadoDTO> {
@@ -24,15 +20,6 @@ class EncordadoService: BaseService<Encordado, UUID, EncordadoRepository>(
     }
 
     suspend fun createEncordado(encordado: EncordadoDTO): TareaDTO {
-        val tarea = Tarea(
-            id = encordado.id,
-            raqueta = encordado.raqueta,
-            precio = encordado.precio,
-            user = encordado.user,
-            pedido = encordado.pedido,
-            tipoTarea = TipoTarea.ENCORDADO
-        )
-        //tareaRepo.create(tarea)
         return mapper.toDTO(this.insert(mapper.fromEncordadoDTO(encordado)))
     }
 

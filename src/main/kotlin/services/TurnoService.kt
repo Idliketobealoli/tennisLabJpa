@@ -6,7 +6,7 @@ import models.Turno
 import repositories.TurnoRepository
 import java.util.UUID
 
-class TurnoService: BaseService<Turno, UUID, TurnoRepository>(
+open class TurnoService: BaseService<Turno, UUID, TurnoRepository>(
     TurnoRepository()) {
     val mapper = TurnoMapper()
 

@@ -4,13 +4,14 @@ import controllers.*
 import dto.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.withContext
 import mappers.*
 import models.Pedido
 import models.enums.PedidoEstado
 import models.enums.Profile
 import models.enums.TipoProducto
+import repositories.PedidoRepository
 import util.waitingText
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -101,16 +102,13 @@ suspend fun modoPresentacion() = coroutineScope {
     )
 
     println("*** INSERTS ***")
-    val inUser = async(Dispatchers.IO) { UserController.insertUser(newUser) }
-    val inMaquina = async(Dispatchers.IO) { MaquinaController.insertMaquina(newMaquina) }
-    val inProducto = async(Dispatchers.IO) { ProductoController.insertProducto(newProducto) }
-    awaitAll(inUser,inMaquina,inProducto)
-    println(inUser)
-    println(inMaquina)
-    println(inProducto)
-    println(async(Dispatchers.IO) { TareaController.insertTarea(newTarea) }.await())
-    println(async(Dispatchers.IO) { TurnoController.insertTurno(newTurno) }.await())
-    println(async(Dispatchers.IO) { PedidoController.insertPedido(newPedido) }.await())
+    println(withContext(Dispatchers.IO) { UserController.insertUser(newUser) })
+    withContext(Dispatchers.IO) {PedidoRepository().create(nPedido)}
+    println(withContext(Dispatchers.IO) { MaquinaController.insertMaquina(newMaquina) })
+    println(withContext(Dispatchers.IO) { ProductoController.insertProducto(newProducto) })
+    println(withContext(Dispatchers.IO) { TareaController.insertTarea(newTarea) })
+    println(withContext(Dispatchers.IO) { TurnoController.insertTurno(newTurno) })
+    println(withContext(Dispatchers.IO) { PedidoController.insertPedido(newPedido) })
 
 
     println("\n\n\nFIND ALL USERS")
@@ -144,27 +142,14 @@ suspend fun modoPresentacion() = coroutineScope {
     println(pedidos.await())
 
     println("\n\n\n*** GET BY ID Y OTROS CAMPOS ***")
-    val fbid1 = async(Dispatchers.IO) { UserController.getUserById(
-        UUID.fromString("ad000001-0000-0000-0000-000000000001")) }
-    val fbid2 = async(Dispatchers.IO) { MaquinaController.getMaquinaById(
-        UUID.fromString("ad000001-0000-0000-0000-000000000002")) }
-    val fbid3 = async(Dispatchers.IO) { ProductoController.getProductoById(
-        UUID.fromString("ad000001-0000-0000-0000-000000000003")) }
-    val fbid4 = async(Dispatchers.IO) { TareaController.getTareaById(
-        UUID.fromString("ad000001-0000-0000-0000-000000000004")) }
-    val fbid5 = async(Dispatchers.IO) { TurnoController.getTurnoById(
-        UUID.fromString("ad000001-0000-0000-0000-000000000005")) }
-    val fbid6 = async(Dispatchers.IO) { PedidoController.getPedidoById(
-        UUID.fromString("ad000001-0000-0000-0000-000000000006")) }
-    val fbid7 = async(Dispatchers.IO) { UserController.getUserByEmail(
-        "loli@uwu.com") }
-    val fbid8 = async(Dispatchers.IO) { UserController.getUserByPhone(
-        "170717079") }
-
-    val fbids = listOf(fbid1, fbid2, fbid3, fbid4, fbid5, fbid6, fbid7, fbid8)
-    fbids.forEach { println(it.await()) }
-
-
+    println(withContext(Dispatchers.IO) { UserController.getUserById(UUID.fromString("ad000001-0000-0000-0000-000000000001")) } )
+    println(withContext(Dispatchers.IO) { MaquinaController.getMaquinaById(UUID.fromString("ad000001-0000-0000-0000-000000000002")) } )
+    println(withContext(Dispatchers.IO) { ProductoController.getProductoById(UUID.fromString("ad000001-0000-0000-0000-000000000003")) } )
+    println(withContext(Dispatchers.IO) { TareaController.getTareaById(UUID.fromString("ad000001-0000-0000-0000-000000000004")) } )
+    println(withContext(Dispatchers.IO) { TurnoController.getTurnoById(UUID.fromString("ad000001-0000-0000-0000-000000000005")) } )
+    println(withContext(Dispatchers.IO) { PedidoController.getPedidoById(UUID.fromString("ad000001-0000-0000-0000-000000000006")) } )
+    println(withContext(Dispatchers.IO) { UserController.getUserByEmail("loli@uwu.com") } )
+    println(withContext(Dispatchers.IO) { UserController.getUserByPhone("170717079") } )
 
     val newUser2 = UserDTO(
         id = UUID.fromString(
@@ -244,16 +229,12 @@ suspend fun modoPresentacion() = coroutineScope {
     )
 
     println("*** UPDATES ***")
-    val inUser2 = async(Dispatchers.IO) { UserController.insertUser(newUser2) }
-    val inMaquina2 = async(Dispatchers.IO) { MaquinaController.insertMaquina(newMaquina2) }
-    val inProducto2 = async(Dispatchers.IO) { ProductoController.insertProducto(newProducto2) }
-    awaitAll(inUser2,inMaquina2,inProducto2)
-    println(inUser2)
-    println(inMaquina2)
-    println(inProducto2)
-    println(async(Dispatchers.IO) { TareaController.insertTarea(newTarea2) }.await())
-    println(async(Dispatchers.IO) { TurnoController.insertTurno(newTurno2) }.await())
-    println(async(Dispatchers.IO) { PedidoController.insertPedido(newPedido2) }.await())
+    println(withContext(Dispatchers.IO) { UserController.insertUser(newUser2) })
+    println(withContext(Dispatchers.IO) { MaquinaController.insertMaquina(newMaquina2) })
+    println(withContext(Dispatchers.IO) { ProductoController.insertProducto(newProducto2) })
+    println(withContext(Dispatchers.IO) { TareaController.insertTarea(newTarea2) })
+    println(withContext(Dispatchers.IO) { TurnoController.insertTurno(newTurno2) })
+    println(withContext(Dispatchers.IO) { PedidoController.insertPedido(newPedido2) })
 
     println("*** FIND ALL DE TODO OTRA VEZ PARA OBSERVAR COMO EFECTIVAMENTE SE HAN SOBREESCRITO LOS CAMPOS ***")
     val users2 = async(Dispatchers.IO) { UserController.findAllUsers() }
@@ -276,7 +257,7 @@ suspend fun modoPresentacion() = coroutineScope {
     println(pedidos2.await())
 
     println("*** DELETES ***")
-    println(PedidoController.deletePedido(newPedido2))
     println(TurnoController.deleteTurno(newTurno2))
     println(TareaController.deleteTarea(newTarea2))
+    println(PedidoController.deletePedido(newPedido2))
 }

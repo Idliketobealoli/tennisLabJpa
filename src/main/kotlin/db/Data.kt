@@ -260,4 +260,29 @@ class DataLoader {
             fechaEntrega = null
         )
     )
+
+    fun pedidos() = listOf(pedido)
+
+    fun users() = listOf(uMapper.fromDTO(client), uMapper.fromDTO(worker))
+
+    fun productos() = listOf(
+        pMapper.fromDTO(raqueta),
+        pMapper.fromDTO(producto1),
+        pMapper.fromDTO(producto2),
+        pMapper.fromDTO(producto3),
+        pMapper.fromDTO(cordaje),
+    )
+
+    fun maquinas() = listOf(
+        mMapper.fromDTO(personalizadora1),
+        mMapper.fromDTO(encordadora1)
+    )
+
+    fun tareas() = listOf(
+        tMapper.fromDTO(adquisicion1),
+        tMapper.fromDTO(adquisicion2),
+        tMapper.fromDTO(adquisicion3),
+        tMapper.fromDTO(encordado),
+        tMapper.fromDTO(personalizacion)
+    )
 }

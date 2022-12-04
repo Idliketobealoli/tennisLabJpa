@@ -3,19 +3,15 @@ package mappers
 import dto.EncordadoraDTO
 import dto.MaquinaDTO
 import dto.PersonalizadoraDTO
+import exceptions.MapperException
 import models.*
 
-/**
- * @author Iván Azagra Troya
- * Este Kotlin.file crea las funciones que recogen las entidades DAO
- * de las diferentes máquinas para devolver la clase Maquina POKO
- */
 class MaquinaMapper: BaseMapper<Maquina,MaquinaDTO>() {
     override fun fromDTO(item: MaquinaDTO): Maquina {
         return when (item) {
             is EncordadoraDTO -> fromEncordadoraDTO(item)
             is PersonalizadoraDTO -> fromPersonalizadoraDTO(item)
-            else -> throw Exception()
+            else -> throw MapperException()
         }
     }
 
@@ -50,7 +46,7 @@ class MaquinaMapper: BaseMapper<Maquina,MaquinaDTO>() {
         return when (item) {
             is Personalizadora -> toPersonalizadoraDTO(item)
             is Encordadora -> toEncordadoraDTO(item)
-            else -> throw Exception()
+            else -> throw MapperException()
         }
     }
 

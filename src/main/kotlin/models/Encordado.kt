@@ -10,12 +10,12 @@ import javax.persistence.*
 class Encordado():Tarea() {
     var tensionHorizontal: Double = 0.0
 
-    @ManyToOne//(cascade = [CascadeType.DETACH])
+    @ManyToOne
     @JoinColumn(name = "c_horizontal_id", referencedColumnName = "id", nullable = false)
     lateinit var cordajeHorizontal: Producto
     var tensionVertical: Double = 0.0
 
-    @ManyToOne//(cascade = [CascadeType.DETACH])
+    @ManyToOne
     @JoinColumn(name = "c_vertical_id", referencedColumnName = "id", nullable = false)
     lateinit var cordajeVertical: Producto
     var dosNudos: Boolean = false

@@ -27,13 +27,7 @@ class EncordadoraRepository: ICRUDRepository<Encordadora, UUID> {
 
     override suspend fun create(entity: Encordadora): Encordadora = withContext(Dispatchers.IO) {
         HibernateManager.transaction {
-            //HibernateManager.manager.merge(entity)
-            ///*
-            val encordadora = HibernateManager.manager.find(Encordadora::class.java, entity.id)
-            encordadora?.let { HibernateManager.manager.merge(entity) }
-                .run { HibernateManager.manager.persist(entity) }
-            // */
-            //HibernateManager.manager.flush()
+            HibernateManager.manager.merge(entity)
         }
         entity
     }

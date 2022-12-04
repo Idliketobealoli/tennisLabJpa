@@ -7,7 +7,7 @@ import models.enums.Profile
 import repositories.UserRepository
 import java.util.UUID
 
-class UserService: BaseService<User, UUID, UserRepository>(UserRepository()) {
+open class UserService: BaseService<User, UUID, UserRepository>(UserRepository()) {
     val mapper = UserMapper()
 
     suspend fun getAllUsers(): List<UserDTO> {

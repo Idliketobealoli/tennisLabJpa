@@ -1,7 +1,6 @@
 package models
 
 import models.enums.TipoMaquina
-import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.GenericGenerator
 import org.hibernate.annotations.Type
 import java.time.LocalDate
@@ -26,7 +25,6 @@ class Maquina() {
 
     @Column(name = "fecha_adquisicion")
     @Type(type = "org.hibernate.type.LocalDateType")
-    //@CreationTimestamp
     lateinit var fechaAdquisicion: LocalDate
     lateinit var numeroSerie: String
     lateinit var tipoMaquina: TipoMaquina

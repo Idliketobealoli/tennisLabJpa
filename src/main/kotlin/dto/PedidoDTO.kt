@@ -3,13 +3,10 @@ package dto
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.annotations.Expose
-import models.Maquina
 import models.Tarea
 import models.Turno
 import models.User
 import models.enums.PedidoEstado
-import util.toLocalDate
-import util.toLocalMoney
 import java.time.LocalDate
 import java.util.*
 

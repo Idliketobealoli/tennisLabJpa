@@ -27,13 +27,7 @@ class PersonalizadoraRepository: ICRUDRepository<Personalizadora, UUID> {
 
     override suspend fun create(entity: Personalizadora): Personalizadora = withContext(Dispatchers.IO) {
         HibernateManager.transaction {
-            //HibernateManager.manager.merge(entity)
-            ///*
-            val personalizadora = HibernateManager.manager.find(Personalizadora::class.java, entity.id)
-            personalizadora?.let { HibernateManager.manager.merge(entity) }
-                .run { HibernateManager.manager.persist(entity) }
-            //HibernateManager.manager.flush()
-            // */
+            HibernateManager.manager.merge(entity)
         }
         entity
     }

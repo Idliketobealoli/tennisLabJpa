@@ -4,15 +4,11 @@ import dto.EncordadoraDTO
 import dto.MaquinaDTO
 import mappers.MaquinaMapper
 import models.Encordadora
-import models.Maquina
-import models.enums.TipoMaquina
 import repositories.EncordadoraRepository
-import repositories.MaquinaRepository
 import java.util.*
 
-class EncordadoraService: BaseService<Encordadora, UUID, EncordadoraRepository>(
+open class EncordadoraService: BaseService<Encordadora, UUID, EncordadoraRepository>(
     EncordadoraRepository()) {
-    val maquinaRepo = MaquinaRepository()
     val mapper = MaquinaMapper()
 
     suspend fun getAllEncordadoras(): List<EncordadoraDTO> {
@@ -24,15 +20,6 @@ class EncordadoraService: BaseService<Encordadora, UUID, EncordadoraRepository>(
     }
 
     suspend fun createEncordadora(encordadora: EncordadoraDTO): MaquinaDTO {
-        val maquina = Maquina(
-            id = encordadora.id,
-            modelo = encordadora.modelo,
-            marca = encordadora.marca,
-            fechaAdquisicion = encordadora.fechaAdquisicion,
-            numeroSerie = encordadora.numeroSerie,
-            tipoMaquina = TipoMaquina.ENCORDADORA
-        )
-        //maquinaRepo.create(maquina)
         return mapper.toDTO(this.insert(mapper.fromEncordadoraDTO(encordadora)))
     }
 

@@ -9,7 +9,7 @@ import javax.persistence.*
 @Table(name = "adquisiciones")
 @NamedQuery(name = "Adquisicion.findAll", query = "select a from Adquisicion a")
 class Adquisicion(): Tarea() {
-    @ManyToOne//(cascade = [CascadeType.DETACH])
+    @ManyToOne
     @JoinColumn(name = "p_adquirido_id", referencedColumnName = "id", nullable = false)
     @Expose
     lateinit var productoAdquirido: Producto

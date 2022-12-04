@@ -1,21 +1,16 @@
 package mappers
 
 import dto.*
+import exceptions.MapperException
 import models.*
-import models.enums.TipoTarea
 
-/**
- * @author Iván Azagra Troya
- * Este Kotlin.file crea las funciones que recogen las entidades DAO de las diferentes tareas
- * para devolver la clase
- */
 class TareaMapper:BaseMapper<Tarea, TareaDTO>() {
     override fun fromDTO(item: TareaDTO): Tarea {
         return when (item) {
             is PersonalizacionDTO -> fromPersonalizacionDTO(item)
             is EncordadoDTO -> fromEncordadoDTO(item)
             is AdquisicionDTO -> fromAdquisicionDTO(item)
-            else -> throw Exception()
+            else -> throw MapperException()
         }
     }
 
@@ -61,7 +56,7 @@ class TareaMapper:BaseMapper<Tarea, TareaDTO>() {
             is Personalizacion -> toPersonalizacionDTO(item)
             is Encordado -> toEncordadoDTO(item)
             is Adquisicion -> toAdquisicionDTO(item)
-            else -> throw Exception()
+            else -> throw MapperException()
         }
     }
 

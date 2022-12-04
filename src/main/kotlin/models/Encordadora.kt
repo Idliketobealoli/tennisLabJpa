@@ -1,6 +1,5 @@
 package models
 
-import com.google.gson.GsonBuilder
 import models.enums.TipoMaquina
 import java.time.LocalDate
 import java.util.*

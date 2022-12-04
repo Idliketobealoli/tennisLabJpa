@@ -27,13 +27,7 @@ class PersonalizacionRepository: ICRUDRepository<Personalizacion, UUID> {
 
     override suspend fun create(entity: Personalizacion): Personalizacion = withContext(Dispatchers.IO) {
         HibernateManager.transaction {
-            //HibernateManager.manager.merge(entity)
-            ///*
-            val personalizacion = HibernateManager.manager.find(Personalizacion::class.java, entity.id)
-            personalizacion?.let { HibernateManager.manager.merge(entity) }
-                .run { HibernateManager.manager.persist(entity) }
-            // */
-            //HibernateManager.manager.flush()
+            HibernateManager.manager.merge(entity)
         }
         entity
     }

@@ -7,6 +7,7 @@ import login.login
 import login.register
 import menu.menu
 import mu.KotlinLogging
+import repositories.PedidoRepository
 
 val logger = KotlinLogging.logger {  }
 
@@ -17,32 +18,17 @@ fun main(args: Array<String>) {
         val dataLoader = DataLoader()
 
         println("Cargando datos iniciales...")
-        val job1 = launch(Dispatchers.IO) {
-            dataLoader.getUsers().forEach { UserController.insertUser(it) }
-            println("Users loaded.")
-        }
+        dataLoader.getUsers().forEach { UserController.insertUser(it) }
+        println("Users loaded.")
 
-        val job2 = launch(Dispatchers.IO) {
-            dataLoader.getMaquinas().forEach { MaquinaController.insertMaquina(it) }
-            println("Maquinas loaded.")
-        }
+        val pedRepo = PedidoRepository()
+        dataLoader.pedidos().forEach { pedRepo.create(it) }
 
-        val job3 = launch(Dispatchers.IO) {
-            dataLoader.getProductos().forEach { ProductoController.insertProducto(it) }
-            println("Productos loaded.")
-        }
+        dataLoader.getMaquinas().forEach { MaquinaController.insertMaquina(it) }
+        println("Maquinas loaded.")
 
-        println()
-        while (!job1.isCompleted || !job2.isCompleted ||
-            !job3.isCompleted) {
-            for (i in 1..3) {
-                print(".")
-                delay(500)
-            }
-            println()
-        }
-
-        joinAll(job1,job2,job3)
+        dataLoader.getProductos().forEach { ProductoController.insertProducto(it) }
+        println("Productos loaded.")
 
         /*
         println("////////////////////// TODAS ///////////////////////")
@@ -54,7 +40,6 @@ fun main(args: Array<String>) {
         println("////////////////// FIN ////////////////////")
         */
 
-        val job4 = launch(Dispatchers.IO) {
             dataLoader.getTareas().forEach { TareaController.insertTarea(it) }
             println("Tareas loaded.")
             dataLoader.getTurnos().forEach { TurnoController.insertTurno(it) }
@@ -62,26 +47,14 @@ fun main(args: Array<String>) {
             println("Turnos loaded.")
             dataLoader.getPedidos().forEach { PedidoController.insertPedido(it) }
             println("Pedidos loaded.")
-        }
-        println()
-        while (!job4.isCompleted) {
-            for (i in 1..3) {
-                print(".")
-                delay(500)
-            }
-            println()
-        }
-
-        job4.join()
 
         println("Data successfully loaded.")
-        val prt1 = launch(Dispatchers.IO) { println("USERS: ${UserController.findAllUsers()}") }
-        val prt2 = launch(Dispatchers.IO) { println("MAQUINAS: ${MaquinaController.findAllMaquinas()}") }
-        val prt3 = launch(Dispatchers.IO) { println("PRODUCTOS: ${ProductoController.findAllProductos()}") }
-        val prt4 = launch(Dispatchers.IO) { println("TAREAS: ${TareaController.findAllTareas()}") }
-        val prt5 = launch(Dispatchers.IO) { println("TURNOS: ${TurnoController.findAllTurnos()}") }
-        val prt6 = launch(Dispatchers.IO) { println("PEDIDOS: ${PedidoController.findAllPedidos()}") }
-        joinAll(prt1,prt2,prt3,prt4,prt5,prt6)
+        println("USERS: ${UserController.findAllUsers()}")
+        println("MAQUINAS: ${MaquinaController.findAllMaquinas()}")
+        println("PRODUCTOS: ${ProductoController.findAllProductos()}")
+        println("TAREAS: ${TareaController.findAllTareas()}")
+        println("TURNOS: ${TurnoController.findAllTurnos()}")
+        println("PEDIDOS: ${PedidoController.findAllPedidos()}")
 
         var loginEnter = ""
         println(" - Welcome. Do you want to log in or register? [login/register]")

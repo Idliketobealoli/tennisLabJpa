@@ -20,11 +20,11 @@ class Turno() {
     @Type(type = "uuid-char")
     lateinit var id: UUID
 
-    @ManyToOne//(cascade = [CascadeType.DETACH])
+    @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     lateinit var worker: User
 
-    @ManyToOne//(cascade = [CascadeType.DETACH])
+    @ManyToOne
     @JoinColumn(name = "maquina_id", referencedColumnName = "id", nullable = false)
     lateinit var maquina: Maquina
 
@@ -39,15 +39,15 @@ class Turno() {
     lateinit var horaFin: LocalDateTime
     var numPedidosActivos: Int = 1
 
-    @ManyToOne//(cascade = [CascadeType.DETACH])
+    @ManyToOne
     @JoinColumn(name = "tarea1_id", referencedColumnName = "id", nullable = false)
     lateinit var tarea1: Tarea
 
-    @ManyToOne//(cascade = [CascadeType.DETACH])
+    @ManyToOne
     @JoinColumn(name = "tarea2_id", referencedColumnName = "id", nullable = true)
     var tarea2: Tarea? = null
 
-    @ManyToOne//(cascade = [CascadeType.DETACH])
+    @ManyToOne
     @JoinColumn(name = "pedido_id", referencedColumnName = "id", nullable = false)
     lateinit var pedido: Pedido
 

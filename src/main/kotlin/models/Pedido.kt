@@ -1,6 +1,5 @@
 package models
 
-import com.google.gson.GsonBuilder
 import models.enums.PedidoEstado
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.GenericGenerator
@@ -21,13 +20,9 @@ class Pedido() {
     @Column(name = "id")
     @Type(type = "uuid-char")
     lateinit var id: UUID
-    //@OneToMany(mappedBy = "pedido", orphanRemoval = true, fetch = FetchType.LAZY)
-    //lateinit var tareas: List<Tarea>
-    @ManyToOne//(cascade = [CascadeType.DETACH])
+    @ManyToOne
     @JoinColumn(name = "client_id", referencedColumnName = "id", nullable = false)
     lateinit var client: User
-    //@OneToMany(mappedBy = "pedido", orphanRemoval = true, fetch = FetchType.LAZY)
-    //lateinit var turnos: List<Turno>
     lateinit var state: PedidoEstado
 
     @Column(name = "fecha_entrada")
@@ -50,9 +45,7 @@ class Pedido() {
 
     constructor(
         id: UUID?,
-        //tareas: List<Tarea>,
         client: User,
-        //turnos: List<Turno>,
         state: PedidoEstado,
         fechaEntrada: LocalDate?,
         fechaProgramada: LocalDate,
@@ -61,9 +54,7 @@ class Pedido() {
         precio: Double
     ): this() {
         this.id = id ?: UUID.randomUUID()
-        //this.tareas = tareas
         this.client = client
-        //this.turnos = turnos
         this.state = state
         this.fechaEntrada = fechaEntrada ?: LocalDate.now()
         this.fechaProgramada = fechaProgramada

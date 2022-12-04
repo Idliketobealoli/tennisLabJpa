@@ -29,7 +29,7 @@
             <property name="hibernate.connection.user" value="ivanloli"/>
             <property name="hibernate.connection.password" value=""/>
             <!--   Para ver las consultas   -->
-            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.show_sql" value="false"/>
             <!--   Para trabajar con el esquema
                                         validate: validate the schema, makes no changes to the database.
                                         update: update the schema si detecta cambios.

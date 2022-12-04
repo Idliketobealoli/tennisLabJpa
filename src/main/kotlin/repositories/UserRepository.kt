@@ -62,13 +62,7 @@ class UserRepository: ICRUDRepository<User, UUID> {
 
     override suspend fun create(entity: User): User = withContext(Dispatchers.IO) {
         HibernateManager.transaction {
-            //manager.merge(entity)
-            ///*
-            val user = manager.find(User::class.java, entity.id)
-            user?.let { manager.merge(entity) }
-                .run { manager.persist(entity) }
-            //manager.flush()
-            // */
+            manager.merge(entity)
         }
         entity
     }

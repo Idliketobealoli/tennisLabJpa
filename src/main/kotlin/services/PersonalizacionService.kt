@@ -4,15 +4,11 @@ import dto.PersonalizacionDTO
 import dto.TareaDTO
 import mappers.TareaMapper
 import models.Personalizacion
-import models.Tarea
-import models.enums.TipoTarea
 import repositories.PersonalizacionRepository
-import repositories.TareaRepository
 import java.util.UUID
 
-class PersonalizacionService: BaseService<Personalizacion, UUID, PersonalizacionRepository>(
+open class PersonalizacionService: BaseService<Personalizacion, UUID, PersonalizacionRepository>(
     PersonalizacionRepository()) {
-    val tareaRepo = TareaRepository()
     val mapper = TareaMapper()
 
     suspend fun getAllPersonalizaciones(): List<PersonalizacionDTO> {
@@ -24,15 +20,6 @@ class PersonalizacionService: BaseService<Personalizacion, UUID, Personalizacion
     }
 
     suspend fun createPersonalizacion(personalizacion: PersonalizacionDTO): TareaDTO {
-        val tarea = Tarea(
-            id = personalizacion.id,
-            raqueta = personalizacion.raqueta,
-            precio = personalizacion.precio,
-            user = personalizacion.user,
-            pedido = personalizacion.pedido,
-            tipoTarea = TipoTarea.PERSONALIZACION
-        )
-        //tareaRepo.create(tarea)
         return mapper.toDTO(this.insert(mapper.fromPersonalizacionDTO(personalizacion)))
     }
 

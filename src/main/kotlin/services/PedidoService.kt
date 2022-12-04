@@ -8,7 +8,7 @@ import repositories.TareaRepository
 import repositories.TurnoRepository
 import java.util.UUID
 
-class PedidoService : BaseService<Pedido, UUID, PedidoRepository>(
+open class PedidoService : BaseService<Pedido, UUID, PedidoRepository>(
     PedidoRepository()
 ) {
     val mapper = PedidoMapper()

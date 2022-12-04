@@ -6,7 +6,7 @@ import models.Producto
 import repositories.ProductoRepository
 import java.util.*
 
-class ProductoService: BaseService<Producto, UUID, ProductoRepository>(
+open class ProductoService: BaseService<Producto, UUID, ProductoRepository>(
     ProductoRepository()) {
     val mapper = ProductoMapper()
 

@@ -27,13 +27,7 @@ class TareaRepository: ICRUDRepository<Tarea, UUID> {
 
     override suspend fun create(entity: Tarea): Tarea = withContext(Dispatchers.IO) {
         HibernateManager.transaction {
-            //HibernateManager.manager.merge(entity)
-            ///*
-            val tarea = HibernateManager.manager.find(Tarea::class.java, entity.id)
-            tarea?.let { HibernateManager.manager.merge(entity) }
-                .run { HibernateManager.manager.persist(entity) }
-            // */
-            //HibernateManager.manager.flush()
+            HibernateManager.manager.merge(entity)
         }
         entity
     }
