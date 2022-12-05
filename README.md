@@ -1,4 +1,4 @@
-#API DE TENIS - JPA 
+# API DE TENIS - JPA 
 ### Hecho por: 
 - Daniel Rodriguez Muñoz
 - Ivan Azagra Troya
@@ -235,7 +235,7 @@ create y delete.
 
 ---
 
-###Read All 
+### Read All 
 
 Primero crea una lista mutable vacia del objeto que queramos devolver, luego abre una transaccion y 
 como query hace una TypedQuery<T> llamando al metodo createNamedQuery del manager del controlador de la BD, y 
@@ -257,7 +257,7 @@ Nota: * Donde en el codigo pone T no se refiere a un generico, sino al tipo que 
 
 ---
 
-###Find by ID
+### Find by ID
 
 Setea el resultado a nulo, inicia transaccion, busca por ID, cierra transaccion y devuelve el resultado.
 ```kotlin
@@ -272,7 +272,7 @@ override suspend fun findById(id: UUID): T? = withContext(Dispatchers.IO) {
 
 ---
 
-###Insert
+### Insert
 
 Inicia transaccion, crea o actualiza (dependiendo de si ya existe o no ese objeto en la BD), cierra transaccion y 
 devuelve el objeto pasado por parametro.
@@ -287,7 +287,7 @@ override suspend fun create(entity: Adquisicion): Adquisicion = withContext(Disp
 
 ---
 
-###Delete
+### Delete
 Setea el resultado a falso, inicia transaccion, busca por id la entidad pasada por parametro, si la encuentra 
 la borra y setea el resultado a true, si no no hace nada, cierra transaccion y devuelve el resultado.
 
@@ -366,7 +366,7 @@ hasta que ese deferred sea completado.
 
 </details>
 
-###TEST
+### TEST
 
 <details>
   <summary>Controllers</summary>
