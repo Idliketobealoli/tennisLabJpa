@@ -227,6 +227,46 @@ y @CreationTimestamp porque si no daba problemas.
 </details>
 
 ---
+<details>
+  <summary>Models exposed</summary>
+Los modelos son clases POKO a secas, no tienen ningúna diferencia a un POKO normal, no utilizan anotaciones y solamente constan de un constructor utilizado en diferentes partes del programa.
+</details>
+---
+
+<details>
+  <summary>Entities</summary>
+
+Las entidades son las clases dedicadas a crear las bases de datos y donde casan los valores con todos los parámetros de la base de datos para rellenar los valores necesarios
+
+---
+
+### Tabla 
+
+Crea la tabla en la base de datos utilizando un id que se le pase extendiendo de una clase ya creada por Exposed:
+
+```kotlin
+object Table: UUIDTable("Nombre Tabla") {
+  val atributo = reference("", Tabla con la relación)
+  val número = integer("número")
+}
+```
+
+---
+
+### Dao
+
+Setea el resultado a nulo, inicia transaccion, busca por ID, cierra transaccion y devuelve el resultado.
+```kotlin
+class Dao(id: EntityID<UUID>): UUIDEntity(id) {
+  companion object: UUIDEntityClass<Dao>(Table)
+
+  var atributo by Dao referencedOn Table.atributo
+  var número by Table.número
+}
+```
+
+---
+</details>
 
 <details>
   <summary>Repositories</summary>
