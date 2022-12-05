@@ -234,7 +234,7 @@ Los modelos son clases POKO a secas, no tienen ningúna diferencia a un POKO nor
 
 ---
 <details>
-  <summary>Entities</summary>
+  <summary>Entities exposed</summary>
 
 Las entidades son las clases dedicadas a crear las bases de datos y donde casan los valores con todos los parámetros de la base de datos para rellenar los valores necesarios
 
@@ -263,6 +263,7 @@ class Dao(id: EntityID<UUID>): UUIDEntity(id) {
   var número by Table.número
 }
 ```
+---
   
 ---
 </details>
