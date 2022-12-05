@@ -8,6 +8,13 @@ import repositories.TareaRepository
 import repositories.TurnoRepository
 import java.util.UUID
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase encargada de llamar a las operaciones del repositorio correspondientes y
+ * pasar el resultado de las mismas a DTO usando para ello
+ * el mapper y el repositorio de Pedido.
+ */
 open class PedidoService : BaseService<Pedido, UUID, PedidoRepository>(
     PedidoRepository()
 ) {

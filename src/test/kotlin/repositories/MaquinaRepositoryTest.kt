@@ -8,6 +8,11 @@ import org.junit.jupiter.api.*
 import java.time.LocalDate
 import java.util.*
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase de testeo de integracion de MaquinaRepository
+ */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class MaquinaRepositoryTest {
     val repository = MaquinaRepository()
@@ -22,6 +27,9 @@ class MaquinaRepositoryTest {
         maxTension = 15.2,
         minTension = 5.1)
 
+    /**
+     * Inicializacion de la base de datos para testing.
+     */
     companion object {
         @JvmStatic
         @BeforeAll

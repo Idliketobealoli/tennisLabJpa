@@ -11,6 +11,11 @@ import repositories.PedidoRepository
 
 val logger = KotlinLogging.logger {  }
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * La funcion principal del programa.
+ */
 fun main(args: Array<String>) {
     runBlocking {
         initDB()
@@ -57,6 +62,11 @@ fun main(args: Array<String>) {
     }
 }
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Funcion de inicializacion de la Base de Datos
+ */
 fun initDB() {
     val properties = ApplicationProperties()
     logger.debug { "Reading properties file ${properties.readProperty("app.title")}" }

@@ -6,6 +6,12 @@ import org.hibernate.annotations.Type
 import java.util.*
 import javax.persistence.*
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Clase POKO de Tarea, que será
+ * traducida a una tabla en la Base de Datos.
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "tareas")

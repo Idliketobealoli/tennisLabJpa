@@ -5,6 +5,16 @@ import models.enums.Profile
 import services.UserService
 import java.util.*
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Controlador de User. Emplea el servicio para realizar todas las operaciones
+ * que necesitemos de esta entidad, devolviendo los resultados como JSON.
+ *
+ * Adicionalmente, este controlador tiene un par de metodos que en vez de
+ * devolver el JSON devuelven el objeto, y son unicamente usados para el
+ * login/register.
+ */
 object UserController {
     var service = UserService()
 

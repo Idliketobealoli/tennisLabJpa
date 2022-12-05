@@ -17,6 +17,16 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Modo de presentacion del programa. Lanza un CRUD de todos
+ * los tipos de entidades que hay en el sistema. Primero
+ * las crea, luego busca todas, luego las busca por ID y
+ * otros campos de busqueda como el email, luego las modifica,
+ * luego vuelve a buscar todas para que se vea la diferencia
+ * y por ultimo las borra.
+ */
 suspend fun modoPresentacion() = coroutineScope {
     val pMapper = ProductoMapper()
     val uMapper = UserMapper()

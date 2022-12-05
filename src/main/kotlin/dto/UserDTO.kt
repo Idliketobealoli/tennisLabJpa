@@ -6,6 +6,14 @@ import com.google.gson.annotations.Expose
 import models.enums.Profile
 import java.util.UUID
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase POKO de User usada en el programa.
+ * Consta de un metodo toString() overrideado que
+ * devuelve el objeto como JSON, asi como un metodo
+ * fromJSON y un metodo toJSON.
+ */
 class UserDTO() {
     @Expose
     lateinit var id: UUID

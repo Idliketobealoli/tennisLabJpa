@@ -10,6 +10,15 @@ import models.enums.PedidoEstado
 import java.time.LocalDate
 import java.util.*
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase POKO de Pedido usada en el programa.
+ * Consta de un metodo toString() overrideado que
+ * devuelve el objeto como JSON, asi como un metodo
+ * fromJSON y un metodo toJSON.
+ * Tiene campos calculados automaticamente.
+ */
 class PedidoDTO() {
     @Expose
     lateinit var id: UUID

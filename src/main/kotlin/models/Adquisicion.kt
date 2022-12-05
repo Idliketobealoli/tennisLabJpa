@@ -5,6 +5,12 @@ import models.enums.TipoTarea
 import java.util.*
 import javax.persistence.*
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Clase POKO de Adquisicion, que será
+ * traducida a una tabla en la Base de Datos.
+ */
 @Entity
 @Table(name = "adquisiciones")
 @NamedQuery(name = "Adquisicion.findAll", query = "select a from Adquisicion a")

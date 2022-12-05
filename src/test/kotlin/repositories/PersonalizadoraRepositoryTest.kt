@@ -8,6 +8,11 @@ import org.junit.jupiter.api.*
 import java.time.LocalDate
 import java.util.*
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Clase de testeo de integracion de PersonalizadoraRepository
+ */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class PersonalizadoraRepositoryTest {
     private val repository = PersonalizadoraRepository()
@@ -23,6 +28,9 @@ class PersonalizadoraRepositoryTest {
         measuresManeuverability = true
     )
 
+    /**
+     * Inicializacion de la base de datos para testing.
+     */
     companion object {
         @JvmStatic
         @BeforeAll

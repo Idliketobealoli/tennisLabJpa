@@ -8,6 +8,12 @@ import models.Maquina
 import java.util.*
 import javax.persistence.TypedQuery
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase encargada de hacer las operaciones CRUD en la base de datos.
+ * Implementa ICRUDRepository.
+ */
 class MaquinaRepository: ICRUDRepository<Maquina, UUID> {
     override suspend fun readAll(): List<Maquina> = withContext(Dispatchers.IO) {
         var result = mutableListOf<Maquina>()

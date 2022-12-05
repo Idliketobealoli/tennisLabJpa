@@ -7,6 +7,12 @@ import models.Encordado
 import java.util.*
 import javax.persistence.TypedQuery
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase encargada de hacer las operaciones CRUD en la base de datos.
+ * Implementa ICRUDRepository.
+ */
 class EncordadoRepository: ICRUDRepository<Encordado, UUID> {
     override suspend fun readAll(): List<Encordado> = withContext(Dispatchers.IO) {
         var result = mutableListOf<Encordado>()

@@ -4,6 +4,12 @@ import dto.TurnoDTO
 import services.TurnoService
 import java.util.*
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Controlador de Turno. Emplea el servicio para realizar todas las operaciones
+ * que necesitemos de esta entidad, devolviendo los resultados como JSON.
+ */
 object TurnoController {
     var service = TurnoService()
 

@@ -9,6 +9,11 @@ import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.*
 import java.util.*
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Clase de testeo de integracion de UserRepository
+ */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class UserRepositoryTest {
     private val repository = UserRepository()
@@ -22,6 +27,9 @@ class UserRepositoryTest {
         password = "lolitest",
         perfil = Profile.ADMIN.name)
 
+    /**
+     * Inicializacion de la base de datos para testing.
+     */
     companion object {
         @JvmStatic
         @BeforeAll

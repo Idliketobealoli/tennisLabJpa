@@ -15,6 +15,11 @@ import org.junit.jupiter.api.*
 import java.time.LocalDate
 import java.util.*
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Clase de testeo de integracion de EncordadoRepository
+ */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class EncordadoRepositoryTest {
     val repository = EncordadoRepository()
@@ -66,6 +71,9 @@ class EncordadoRepositoryTest {
         pedido = pedido
     )
 
+    /**
+     * Inicializacion de la base de datos para testing y carga de datos necesarios.
+     */
     companion object {
         @JvmStatic
         @BeforeAll

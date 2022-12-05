@@ -6,6 +6,11 @@ import java.util.*
 
 val logger = KotlinLogging.logger {  }
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Clase que carga y lee el fichero application.properties
+ */
 class ApplicationProperties {
     private val properties: Properties = Properties()
 

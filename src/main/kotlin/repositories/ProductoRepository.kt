@@ -7,6 +7,12 @@ import models.Producto
 import java.util.*
 import javax.persistence.TypedQuery
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase encargada de hacer las operaciones CRUD en la base de datos.
+ * Implementa ICRUDRepository.
+ */
 class ProductoRepository: ICRUDRepository<Producto, UUID> {
     override suspend fun readAll(): List<Producto> = withContext(Dispatchers.IO) {
         var result = mutableListOf<Producto>()

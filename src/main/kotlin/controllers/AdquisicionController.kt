@@ -4,6 +4,12 @@ import dto.AdquisicionDTO
 import services.AdquisicionService
 import java.util.*
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Controlador de Adquisicion. Emplea el servicio para realizar todas las operaciones
+ * que necesitemos de esta entidad, devolviendo los resultados como JSON.
+ */
 object AdquisicionController {
     var service = AdquisicionService()
 

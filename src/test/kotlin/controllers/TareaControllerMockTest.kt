@@ -23,6 +23,11 @@ import services.PersonalizacionService
 import java.time.LocalDate
 import java.util.*
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Clase de testeo unitario de TareaController con MockK.
+ */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockKExtension::class)
 class TareaControllerMockTest {

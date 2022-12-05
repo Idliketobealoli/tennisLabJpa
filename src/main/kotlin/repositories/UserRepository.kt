@@ -9,6 +9,12 @@ import models.enums.Profile
 import java.util.UUID
 import javax.persistence.TypedQuery
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Clase encargada de hacer las operaciones CRUD en la base de datos.
+ * Implementa ICRUDRepository.
+ */
 class UserRepository: ICRUDRepository<User, UUID> {
     override suspend fun readAll(): List<User> = withContext(Dispatchers.IO) {
         var result = mutableListOf<User>()

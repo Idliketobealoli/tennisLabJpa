@@ -7,6 +7,12 @@ import models.Tarea
 import java.util.*
 import javax.persistence.TypedQuery
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Clase encargada de hacer las operaciones CRUD en la base de datos.
+ * Implementa ICRUDRepository.
+ */
 class TareaRepository: ICRUDRepository<Tarea, UUID> {
     override suspend fun readAll(): List<Tarea> = withContext(Dispatchers.IO) {
         var result = mutableListOf<Tarea>()

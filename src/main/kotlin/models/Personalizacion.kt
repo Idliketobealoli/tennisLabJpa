@@ -4,6 +4,12 @@ import models.enums.TipoTarea
 import java.util.*
 import javax.persistence.*
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase POKO de Personalizacion, que será
+ * traducida a una tabla en la Base de Datos.
+ */
 @Entity
 @Table(name = "personalizaciones")
 @NamedQuery(name = "Personalizacion.findAll", query = "select p from Personalizacion p")

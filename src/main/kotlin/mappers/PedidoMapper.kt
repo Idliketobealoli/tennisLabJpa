@@ -8,6 +8,12 @@ import models.Turno
 import repositories.TareaRepository
 import repositories.TurnoRepository
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Clase que hereda de BaseMapper y se encarga de pasar de
+ * DTO a Modelo y de Modelo a DTO.
+ */
 class PedidoMapper: BaseMapper<Pedido, PedidoDTO>() {
     override fun fromDTO(item: PedidoDTO): Pedido {
         return Pedido(

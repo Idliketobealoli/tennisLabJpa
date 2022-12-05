@@ -12,6 +12,11 @@ import org.junit.jupiter.api.*
 import java.time.LocalDate
 import java.util.*
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Clase de testeo de integracion de PedidoRepository
+ */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class PedidoReositoryTest {
     val repository = PedidoRepository()
@@ -36,6 +41,9 @@ class PedidoReositoryTest {
         precio = 0.0
     )
 
+    /**
+     * Inicializacion de la base de datos para testing y carga de datos necesarios.
+     */
     companion object {
         @JvmStatic
         @BeforeAll

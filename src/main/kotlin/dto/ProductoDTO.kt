@@ -6,6 +6,14 @@ import com.google.gson.annotations.Expose
 import models.enums.TipoProducto
 import java.util.*
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Clase POKO de Producto usada en el programa.
+ * Consta de un metodo toString() overrideado que
+ * devuelve el objeto como JSON, asi como un metodo
+ * fromJSON y un metodo toJSON.
+ */
 class ProductoDTO() {
     @Expose lateinit var id: UUID
     @Expose lateinit var tipoProducto: TipoProducto

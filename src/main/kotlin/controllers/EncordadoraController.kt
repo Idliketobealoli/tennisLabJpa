@@ -4,6 +4,12 @@ import dto.EncordadoraDTO
 import services.EncordadoraService
 import java.util.*
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Controlador de Encordadora. Emplea el servicio para realizar todas las operaciones
+ * que necesitemos de esta entidad, devolviendo los resultados como JSON.
+ */
 object EncordadoraController {
     var service = EncordadoraService()
 

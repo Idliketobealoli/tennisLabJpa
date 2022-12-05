@@ -6,6 +6,14 @@ import com.google.gson.annotations.Expose
 import java.time.LocalDate
 import java.util.*
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase POKO de Encordadora usada en el programa.
+ * Consta de un metodo toString() overrideado que
+ * devuelve el objeto como JSON, asi como un metodo
+ * fromJSON y un metodo toJSON.
+ */
 class EncordadoraDTO(): MaquinaDTO {
     @Expose
     lateinit var id: UUID

@@ -7,6 +7,12 @@ import models.Turno
 import java.util.UUID
 import javax.persistence.TypedQuery
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase encargada de hacer las operaciones CRUD en la base de datos.
+ * Implementa ICRUDRepository.
+ */
 class TurnoRepository: ICRUDRepository<Turno, UUID> {
     override suspend fun readAll(): List<Turno> = withContext(Dispatchers.IO) {
         var result = mutableListOf<Turno>()

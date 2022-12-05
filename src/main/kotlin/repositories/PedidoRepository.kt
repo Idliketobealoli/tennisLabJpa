@@ -7,6 +7,12 @@ import models.Pedido
 import java.util.*
 import javax.persistence.TypedQuery
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Clase encargada de hacer las operaciones CRUD en la base de datos.
+ * Implementa ICRUDRepository.
+ */
 class PedidoRepository: ICRUDRepository<Pedido, UUID> {
     override suspend fun readAll(): List<Pedido> = withContext(Dispatchers.IO) {
         var result = mutableListOf<Pedido>()

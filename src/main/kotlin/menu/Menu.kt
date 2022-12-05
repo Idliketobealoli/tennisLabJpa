@@ -4,6 +4,13 @@ import dto.UserDTO
 import models.enums.Profile
 import util.betweenXandY
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Menu que sale una vez logueado/registrado.
+ * En funcion del rol que tenga el usuario le aparecerá un menú u otro
+ * con unas funcionalidades u otras.
+ */
 suspend fun menu(user: UserDTO) {
     var back = false
     while (!back) {

@@ -7,6 +7,13 @@ import models.Encordadora
 import repositories.EncordadoraRepository
 import java.util.*
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase encargada de llamar a las operaciones del repositorio correspondientes y
+ * pasar el resultado de las mismas a DTO usando para ello
+ * el mapper y el repositorio de Encordadora.
+ */
 open class EncordadoraService: BaseService<Encordadora, UUID, EncordadoraRepository>(
     EncordadoraRepository()) {
     val mapper = MaquinaMapper()

@@ -7,6 +7,12 @@ import javax.persistence.Entity
 import javax.persistence.NamedQuery
 import javax.persistence.Table
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Clase POKO de Personalizadora, que será
+ * traducida a una tabla en la Base de Datos.
+ */
 @Entity
 @Table(name = "personalizadoras")
 @NamedQuery(name = "Personalizadora.findAll", query = "select p from Personalizadora p")

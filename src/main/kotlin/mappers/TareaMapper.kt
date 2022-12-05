@@ -4,6 +4,12 @@ import dto.*
 import exceptions.MapperException
 import models.*
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Clase que hereda de BaseMapper y se encarga de pasar de
+ * DTO a Modelo y de Modelo a DTO.
+ */
 class TareaMapper:BaseMapper<Tarea, TareaDTO>() {
     override fun fromDTO(item: TareaDTO): Tarea {
         return when (item) {

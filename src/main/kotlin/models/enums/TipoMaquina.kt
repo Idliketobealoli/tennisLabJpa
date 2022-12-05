@@ -1,5 +1,10 @@
 package models.enums
 
+/**
+ * @author Iván Azagra Troya
+ * Enumerador de los tipos de maquinas
+ * @throws IllegalArgumentException cuando no se trata de un tipo de maquina reconocida
+ */
 enum class TipoMaquina(value: String) {
     PERSONALIZADORA("PERSONALIZADORA"),
     ENCORDADORA("ENCORDADORA");

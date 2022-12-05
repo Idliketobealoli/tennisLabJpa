@@ -7,6 +7,13 @@ import models.Personalizacion
 import repositories.PersonalizacionRepository
 import java.util.UUID
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Clase encargada de llamar a las operaciones del repositorio correspondientes y
+ * pasar el resultado de las mismas a DTO usando para ello
+ * el mapper y el repositorio de Personalizacion.
+ */
 open class PersonalizacionService: BaseService<Personalizacion, UUID, PersonalizacionRepository>(
     PersonalizacionRepository()) {
     val mapper = TareaMapper()

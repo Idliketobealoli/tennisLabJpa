@@ -15,6 +15,11 @@ import org.junit.jupiter.api.*
 import java.time.LocalDate
 import java.util.*
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Clase de testeo de integracion de TareaRepository
+ */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class TareaRepositoryTest {
     private val repository = TareaRepository()
@@ -63,6 +68,9 @@ class TareaRepositoryTest {
         precio = producto.precio
     )
 
+    /**
+     * Inicializacion de la base de datos para testing y carga de datos necesarios.
+     */
     companion object {
         @JvmStatic
         @BeforeAll

@@ -6,6 +6,13 @@ import models.Turno
 import repositories.TurnoRepository
 import java.util.UUID
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase encargada de llamar a las operaciones del repositorio correspondientes y
+ * pasar el resultado de las mismas a DTO usando para ello
+ * el mapper y el repositorio de Turno.
+ */
 open class TurnoService: BaseService<Turno, UUID, TurnoRepository>(
     TurnoRepository()) {
     val mapper = TurnoMapper()

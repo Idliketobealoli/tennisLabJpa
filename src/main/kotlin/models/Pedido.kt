@@ -8,6 +8,12 @@ import java.time.LocalDate
 import java.util.*
 import javax.persistence.*
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Clase POKO de Pedido, que será
+ * traducida a una tabla en la Base de Datos.
+ */
 @Entity
 @Table(name = "pedidos")
 @NamedQuery(name = "Pedido.findAll", query = "select p from Pedido p")

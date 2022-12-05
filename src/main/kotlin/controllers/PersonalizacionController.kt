@@ -4,6 +4,12 @@ import dto.PersonalizacionDTO
 import services.PersonalizacionService
 import java.util.*
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Controlador de Personalizacion. Emplea el servicio para realizar todas las operaciones
+ * que necesitemos de esta entidad, devolviendo los resultados como JSON.
+ */
 object PersonalizacionController {
     var service = PersonalizacionService()
 

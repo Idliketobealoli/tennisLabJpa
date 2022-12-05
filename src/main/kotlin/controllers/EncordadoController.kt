@@ -4,6 +4,12 @@ import dto.EncordadoDTO
 import services.EncordadoService
 import java.util.*
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Controlador de Encordado. Emplea el servicio para realizar todas las operaciones
+ * que necesitemos de esta entidad, devolviendo los resultados como JSON.
+ */
 object EncordadoController {
     var service = EncordadoService()
 

@@ -5,6 +5,12 @@ import org.hibernate.annotations.Type
 import java.util.UUID
 import javax.persistence.*
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Clase POKO de User, que será
+ * traducida a una tabla en la Base de Datos.
+ */
 @Entity
 @Table(name = "users")
 @NamedQuery(name = "User.findAll", query = "select u from User u")

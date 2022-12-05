@@ -15,6 +15,11 @@ import org.junit.jupiter.api.extension.ExtendWith
 import services.ProductoService
 import java.util.*
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase de testeo unitario de ProductoController con MockK.
+ */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockKExtension::class)
 class ProductoControllerMockTest {

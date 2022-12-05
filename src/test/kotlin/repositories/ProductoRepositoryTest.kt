@@ -8,6 +8,11 @@ import models.enums.TipoProducto
 import org.junit.jupiter.api.*
 import java.util.*
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase de testeo de integracion de ProductoRepository
+ */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class ProductoRepositoryTest {
     private val repository = ProductoRepository()
@@ -21,6 +26,9 @@ class ProductoRepositoryTest {
         stock = 8
     )
 
+    /**
+     * Inicializacion de la base de datos para testing.
+     */
     companion object {
         @JvmStatic
         @BeforeAll

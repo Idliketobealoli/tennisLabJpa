@@ -15,6 +15,11 @@ import org.junit.jupiter.api.*
 import java.time.LocalDate
 import java.util.*
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase de testeo de integracion de PersonalizacionRepository
+ */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class PersonalizacionRepositoryTest {
     private val repository = PersonalizacionRepository()
@@ -56,6 +61,9 @@ class PersonalizacionRepositoryTest {
         pedido = pedido
     )
 
+    /**
+     * Inicializacion de la base de datos para testing y carga de datos necesarios.
+     */
     companion object {
         @JvmStatic
         @BeforeAll

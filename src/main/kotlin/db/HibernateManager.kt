@@ -7,6 +7,13 @@ import javax.persistence.EntityManager
 import javax.persistence.EntityTransaction
 import javax.persistence.Persistence
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Controlador de la Base de Datos.
+ * Puede abrir y cerrar conexiones con la misma, asi como iniciar, commitear y
+ * hacer rollbacks de las transacciones.
+ */
 val logger = KotlinLogging.logger {  }
 object HibernateManager: Closeable {
     private var entityManagerFactory = Persistence.createEntityManagerFactory("default")

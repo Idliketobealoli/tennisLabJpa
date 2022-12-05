@@ -7,6 +7,12 @@ import java.time.LocalDate
 import java.util.*
 import javax.persistence.*
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase POKO de Maquina, que será
+ * traducida a una tabla en la Base de Datos.
+ */
 @Entity
 @Table(name = "maquinas")
 @Inheritance(strategy = InheritanceType.JOINED)

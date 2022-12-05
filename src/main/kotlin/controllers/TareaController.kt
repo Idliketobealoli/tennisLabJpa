@@ -9,6 +9,12 @@ import services.EncordadoService
 import services.PersonalizacionService
 import java.util.UUID
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Controlador de Tarea. Emplea el servicio para realizar todas las operaciones
+ * que necesitemos de esta entidad, devolviendo los resultados como JSON.
+ */
 object TareaController {
     var aService = AdquisicionService()
     var eService = EncordadoService()

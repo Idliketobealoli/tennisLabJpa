@@ -7,6 +7,12 @@ import models.Personalizadora
 import java.util.*
 import javax.persistence.TypedQuery
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Clase encargada de hacer las operaciones CRUD en la base de datos.
+ * Implementa ICRUDRepository.
+ */
 class PersonalizadoraRepository: ICRUDRepository<Personalizadora, UUID> {
     override suspend fun readAll(): List<Personalizadora> = withContext(Dispatchers.IO) {
         var result = mutableListOf<Personalizadora>()

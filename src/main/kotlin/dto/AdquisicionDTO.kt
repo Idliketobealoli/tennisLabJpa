@@ -8,6 +8,14 @@ import models.Producto
 import models.User
 import java.util.*
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase POKO de Adquisicion usada en el programa.
+ * Consta de un metodo toString() overrideado que
+ * devuelve el objeto como JSON, asi como un metodo
+ * fromJSON y un metodo toJSON.
+ */
 class AdquisicionDTO(): TareaDTO {
     @Expose lateinit var id: UUID
     @Expose lateinit var raqueta: Producto

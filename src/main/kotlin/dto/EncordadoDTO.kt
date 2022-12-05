@@ -8,6 +8,14 @@ import models.Producto
 import models.User
 import java.util.*
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Clase POKO de Encordado usada en el programa.
+ * Consta de un metodo toString() overrideado que
+ * devuelve el objeto como JSON, asi como un metodo
+ * fromJSON y un metodo toJSON.
+ */
 class EncordadoDTO(): TareaDTO {
     @Expose
     lateinit var id: UUID

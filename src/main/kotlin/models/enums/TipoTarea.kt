@@ -1,5 +1,10 @@
 package models.enums
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ * Enumerador de los tipos de tareas
+ * @throws IllegalArgumentException cuando no se trata de un tipo de tarea reconocida
+ */
 enum class TipoTarea(value: String) {
     PERSONALIZACION("PERSONALIZACION"),
     ENCORDADO("ENCORDADO"),

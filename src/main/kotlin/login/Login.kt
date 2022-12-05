@@ -11,6 +11,12 @@ import util.waitingText
 import java.util.*
 import kotlin.system.exitProcess
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Funcion que sirve para loguearse.
+ * Devuelve un UserDTO del usuario con el que nos hemos logueado.
+ */
 suspend fun login(): UserDTO {
     val res = coroutineScope {
         while (true) {
@@ -44,6 +50,12 @@ suspend fun login(): UserDTO {
     return res as UserDTO
 }
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Funcion que sirve para registrarse.
+ * Crea un usuario en la Base de datos y devuelve un UserDTO del usuario (cliente) con el que nos hemos registrado.
+ */
 suspend fun register(): UserDTO {
     val res = coroutineScope {
         while (true) {

@@ -7,6 +7,12 @@ import models.Adquisicion
 import java.util.*
 import javax.persistence.TypedQuery
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase encargada de hacer las operaciones CRUD en la base de datos.
+ * Implementa ICRUDRepository.
+ */
 class AdquisicionRepository: ICRUDRepository<Adquisicion, UUID> {
     override suspend fun readAll(): List<Adquisicion> = withContext(Dispatchers.IO) {
         var result = mutableListOf<Adquisicion>()

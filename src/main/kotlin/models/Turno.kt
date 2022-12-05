@@ -7,6 +7,12 @@ import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase POKO de Turno, que será
+ * traducida a una tabla en la Base de Datos.
+ */
 @Entity
 @Table(name = "turnos")
 @NamedQuery(name = "Turno.findAll", query = "select t from Turno t")

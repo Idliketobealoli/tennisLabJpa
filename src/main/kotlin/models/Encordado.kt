@@ -4,6 +4,12 @@ import models.enums.TipoTarea
 import java.util.*
 import javax.persistence.*
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase POKO de Encordado, que será
+ * traducida a una tabla en la Base de Datos.
+ */
 @Entity
 @Table(name = "encordados")
 @NamedQuery(name = "Encordado.findAll", query = "select e from Encordado e")

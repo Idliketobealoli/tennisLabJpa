@@ -6,6 +6,12 @@ import dto.PersonalizadoraDTO
 import exceptions.MapperException
 import models.*
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase que hereda de BaseMapper y se encarga de pasar de
+ * DTO a Modelo y de Modelo a DTO.
+ */
 class MaquinaMapper: BaseMapper<Maquina,MaquinaDTO>() {
     override fun fromDTO(item: MaquinaDTO): Maquina {
         return when (item) {

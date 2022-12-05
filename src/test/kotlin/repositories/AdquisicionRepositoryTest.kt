@@ -16,6 +16,11 @@ import org.junit.jupiter.api.Assertions.*
 import java.time.LocalDate
 import java.util.*
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Clase de testeo de integracion de AdquisicionRepository
+ */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class AdquisicionRepositoryTest {
     private val repository = AdquisicionRepository()
@@ -64,6 +69,9 @@ class AdquisicionRepositoryTest {
         precio = producto.precio
     )
 
+    /**
+     * Inicializacion de la base de datos para testing y carga de datos necesarios.
+     */
     companion object {
         @JvmStatic
         @BeforeAll

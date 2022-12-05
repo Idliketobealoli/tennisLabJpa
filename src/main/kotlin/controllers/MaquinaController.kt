@@ -8,6 +8,12 @@ import services.PersonalizadoraService
 import java.time.LocalDate
 import java.util.*
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Controlador de Maquina. Emplea el servicio para realizar todas las operaciones
+ * que necesitemos de esta entidad, devolviendo los resultados como JSON.
+ */
 object MaquinaController {
     var pService = PersonalizadoraService()
     var eService = EncordadoraService()

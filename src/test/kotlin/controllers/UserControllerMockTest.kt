@@ -16,6 +16,11 @@ import org.junit.jupiter.api.extension.ExtendWith
 import services.UserService
 import java.util.*
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Clase de testeo unitario de UserController con MockK.
+ */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockKExtension::class)
 class UserControllerMockTest {

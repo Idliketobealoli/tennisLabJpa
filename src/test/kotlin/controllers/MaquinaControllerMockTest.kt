@@ -17,6 +17,11 @@ import services.PersonalizadoraService
 import java.time.LocalDate
 import java.util.*
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase de testeo unitario de MaquinaController con MockK.
+ */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockKExtension::class)
 class MaquinaControllerMockTest {

@@ -8,6 +8,15 @@ import util.betweenXandY
 import util.waitingText
 import java.util.*
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Menu de los usuarios. Como solo lo pueden acceder los
+ * administradores, no hay mas que un solo menu que permite
+ * hacer cualquier operacion CRUD, asi como buscar por email,
+ * numero de telefono o encontrar todos los usuarios que
+ * tengan un rol en particular.
+ */
 suspend fun menuUsers() = coroutineScope {
     var back = false
     while (!back) {

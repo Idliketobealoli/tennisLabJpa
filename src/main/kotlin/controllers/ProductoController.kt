@@ -5,6 +5,12 @@ import models.enums.TipoProducto
 import services.ProductoService
 import java.util.*
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Controlador de Producto. Emplea el servicio para realizar todas las operaciones
+ * que necesitemos de esta entidad, devolviendo los resultados como JSON.
+ */
 object ProductoController {
     var service = ProductoService()
 

@@ -10,6 +10,13 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Datos iniciales de la base de datos que cargaremos en el main.
+ * Consta de funciones de inicializacion de estos datos que devuelven una lista
+ * de los mismos.
+ */
 class DataLoader {
     val pMapper = ProductoMapper()
     val uMapper = UserMapper()

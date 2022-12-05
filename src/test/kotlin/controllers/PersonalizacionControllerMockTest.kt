@@ -21,6 +21,11 @@ import services.PersonalizacionService
 import java.time.LocalDate
 import java.util.*
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase de testeo unitario de PersonalizacionController con MockK.
+ */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockKExtension::class)
 class PersonalizacionControllerMockTest {

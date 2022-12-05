@@ -13,6 +13,11 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase de testeo de integracion de TurnoRepository
+ */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class TurnoRepositoryTest {
     private val repository = TurnoRepository()
@@ -99,6 +104,9 @@ class TurnoRepositoryTest {
         pedido = pedido
     )
 
+    /**
+     * Inicializacion de la base de datos para testing y carga de datos necesarios.
+     */
     companion object {
         @JvmStatic
         @BeforeAll

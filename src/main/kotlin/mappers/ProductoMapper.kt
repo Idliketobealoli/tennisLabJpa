@@ -3,6 +3,12 @@ package mappers
 import dto.ProductoDTO
 import models.Producto
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase que hereda de BaseMapper y se encarga de pasar de
+ * DTO a Modelo y de Modelo a DTO.
+ */
 class ProductoMapper: BaseMapper<Producto,ProductoDTO>() {
     override fun fromDTO(item: ProductoDTO): Producto {
         return Producto(

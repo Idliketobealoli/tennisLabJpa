@@ -4,6 +4,12 @@ import dto.PersonalizadoraDTO
 import services.PersonalizadoraService
 import java.util.*
 
+/**
+ * @author Daniel Rodriguez Muñoz
+ *
+ * Controlador de Personalizadora. Emplea el servicio para realizar todas las operaciones
+ * que necesitemos de esta entidad, devolviendo los resultados como JSON.
+ */
 object PersonalizadoraController {
     var service = PersonalizadoraService()
 

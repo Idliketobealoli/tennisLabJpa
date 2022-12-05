@@ -3,6 +3,12 @@ package mappers
 import dto.TurnoDTO
 import models.Turno
 
+/**
+ * @author Ivan Azagra Troya
+ *
+ * Clase que hereda de BaseMapper y se encarga de pasar de
+ * DTO a Modelo y de Modelo a DTO.
+ */
 class TurnoMapper: BaseMapper<Turno, TurnoDTO>() {
     override fun fromDTO(item: TurnoDTO): Turno {
         return Turno(
