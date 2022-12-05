@@ -231,7 +231,7 @@ y @CreationTimestamp porque si no daba problemas.
   <summary>Models exposed</summary>
 Los modelos son clases POKO a secas, no tienen ningúna diferencia a un POKO normal, no utilizan anotaciones y solamente constan de un constructor utilizado en diferentes partes del programa.
 </details>
----
+
 
 <details>
   <summary>Entities</summary>
