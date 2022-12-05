@@ -233,7 +233,6 @@ Los modelos son clases POKO a secas, no tienen ningúna diferencia a un POKO nor
 </details>
 
 ---
----
 <details>
   <summary>Entities</summary>
 
@@ -264,7 +263,6 @@ class Dao(id: EntityID<UUID>): UUIDEntity(id) {
   var número by Table.número
 }
 ```
----
   
 ---
 </details>
