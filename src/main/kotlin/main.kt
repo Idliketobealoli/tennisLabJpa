@@ -30,23 +30,13 @@ fun main(args: Array<String>) {
         dataLoader.getProductos().forEach { ProductoController.insertProducto(it) }
         println("Productos loaded.")
 
-        /*
-        println("////////////////////// TODAS ///////////////////////")
-        println(MaquinaController.findAllMaquinas())
-        println("//////////////// PERSONALIZADORAS //////////////////")
-        println(PersonalizadoraController.findAllPersonalizadoras())
-        println("////////////////// ENCORDADORAS ////////////////////")
-        println(EncordadoraController.findAllEncordadoras())
-        println("////////////////// FIN ////////////////////")
-        */
-
-            dataLoader.getTareas().forEach { TareaController.insertTarea(it) }
-            println("Tareas loaded.")
-            dataLoader.getTurnos().forEach { TurnoController.insertTurno(it) }
-            println(TurnoController.findAllTurnos())
-            println("Turnos loaded.")
-            dataLoader.getPedidos().forEach { PedidoController.insertPedido(it) }
-            println("Pedidos loaded.")
+        dataLoader.getTareas().forEach { TareaController.insertTarea(it) }
+        println("Tareas loaded.")
+        dataLoader.getTurnos().forEach { TurnoController.insertTurno(it) }
+        println(TurnoController.findAllTurnos())
+        println("Turnos loaded.")
+        dataLoader.getPedidos().forEach { PedidoController.insertPedido(it) }
+        println("Pedidos loaded.")
 
         println("Data successfully loaded.")
         println("USERS: ${UserController.findAllUsers()}")

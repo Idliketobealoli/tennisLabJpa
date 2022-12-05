@@ -3,7 +3,10 @@
 - Daniel Rodriguez Muñoz
 - Ivan Azagra Troya
 
+### [Enlace al video en Google Drive](https://drive.google.com/file/d/1Ca_K6DGbzdKIePWy1A-u3_kPTeXk4c8l/view?usp=sharing)
+
 ---
+
 ### PROGRAMA PRINCIPAL
 
 <details>
