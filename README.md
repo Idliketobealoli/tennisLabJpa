@@ -232,13 +232,13 @@ y @CreationTimestamp porque si no daba problemas.
 Los modelos son clases POKO a secas, no tienen ningúna diferencia a un POKO normal, no utilizan anotaciones y solamente constan de un constructor utilizado en diferentes partes del programa.
 </details>
 
+---
 
 <details>
   <summary>Entities</summary>
 
 Las entidades son las clases dedicadas a crear las bases de datos y donde casan los valores con todos los parámetros de la base de datos para rellenar los valores necesarios
 
----
 
 ### Tabla 
 
